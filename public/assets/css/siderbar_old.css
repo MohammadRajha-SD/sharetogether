@@ -1,0 +1,84 @@
+    .sidebar-sticky {
+        height: 100%;
+        width: 22%;
+        padding: 20px 0 10px 0;
+        background: #fff;
+        position: fixed;
+        top: 100px;
+        left:0;
+
+
+        /*left: 80px;*/
+    }
+    @media (max-width: 1024px) {
+        .sidebar-sticky {
+            /*left:25px;*/
+        }
+    }
+    @media (max-width: 768px) {
+        .sidebar-sticky {
+            top: 30px;
+            left:0;
+            width: 25%;
+        }
+    }
+    .profile-usermenu {
+        margin-top: 30px;
+    }
+    .profile-usermenu ul li {
+        border-bottom: 1px solid #f0f4f7;
+    }
+    .profile-usermenu ul li:last-child {
+        border-bottom: none;
+    }
+    .profile-usermenu ul li a {
+        color: #93a3b5;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .profile-usermenu ul li a i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+    .profile-usermenu ul li a:hover {
+        background-color: #fafcfd;
+        color:  #93a3b5;
+    }
+    .profile-usermenu ul li.active {
+        border-bottom: none;
+    }
+    .profile-usermenu ul li.active a {
+        color:  #93a3b5;
+        background-color: #f6f9fb;
+        border-left: 2px solid  #93a3b5;
+        margin-left: -2px;
+    }
+    .nav > li {
+        position: relative;
+        display: block;
+    }
+
+	.card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #e9ecef;
+        background-color: #fff;
+    }
+    .card-footer .icon-group {
+        display: flex;
+        align-items: center;
+    }
+    .card-footer .icon-group i {
+        margin-right: 0.5rem;
+    }
+    .card-footer .icon-group .count {
+        margin-right: 1.5rem;
+    }
+    .card-footer i {
+        color: rgba(0, 0, 0, 0.2);
+	}
+    .card-footer i:hover {
+        color: rgba(0, 0, 0, 0.5);
+    }
