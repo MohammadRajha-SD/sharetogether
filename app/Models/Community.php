@@ -13,7 +13,7 @@ class Community extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'community_user');
     }
 
     public function messages()

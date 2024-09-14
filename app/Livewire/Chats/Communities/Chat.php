@@ -1,75 +1,81 @@
 <?php
-// app/Http/Livewire/Chats/Communities/Chat.php
 
 namespace App\Livewire\Chats\Communities;
 
 use Livewire\Component;
-use App\Models\Community;
 use App\Models\Message;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
+use App\Events\MessageSent;
+use Livewire\Attributes\On;
 
 class Chat extends Component
 {
+    use WithPagination;
+
+    public $communityId;
     public $communityName;
     public $messages;
-    public $communityId;
     public $message;
-    public $page = 1;
     public $hasMoreMessages = true;
-    public $messagesPerPage = 20;
+    public $limit = 6;
 
-    public function mount($slug)
+    protected $listeners = ['refresh' => '$refresh'];
+
+    public function mount($community)
     {
-        $community = Community::where('slug', $slug)->firstOrFail();
         $this->communityId = $community->id;
         $this->communityName = $community->name;
+        $this->messages = new Collection();
+        $this->message = '';
         $this->loadMessages();
     }
 
- 
+
     public function loadMessages()
     {
-        $offset = ($this->page - 1) * $this->messagesPerPage;
+        $query = Message::where('community_id', $this->communityId)->orderBy('created_at', 'desc');
+        $messages = $query->paginate($this->limit);
 
-        $this->messages = Message::where('community_id', $this->communityId)
-            ->orderBy('created_at', 'desc')
-            ->skip($offset)
-            ->take($this->messagesPerPage)
-            ->get()
-            ->reverse();
+        $this->messages = $this->messages->merge($messages->items());
 
-        if ($this->messages->count() < $this->messagesPerPage) {
-            $this->hasMoreMessages = false;
+        $this->hasMoreMessages = $messages->hasMorePages();
+
+        if ($this->hasMoreMessages) {
+            $this->limit += $this->limit;
         }
     }
 
     public function sendMessage()
     {
-        $this->validate([
-            'message' => 'required|string|max:255',
-        ]);
+        if($this->message !== '')
+        {
+            $chatMessage = Message::create([
+                'community_id' => $this->communityId,
+                'user_id' => Auth::id(),
+                'message' => $this->message,
+            ]);
 
-        Message::create([
-            'community_id' => $this->communityId,
-            'user_id' => Auth::id(),
-            'message' => $this->message,
-        ]);
+            $this->messages->prepend($chatMessage);
 
-        $this->message = '';
-        
-        $this->emit('messageSent');
+            broadcast(new MessageSent($chatMessage))->toOthers();
+
+            $this->message = '';
+        }
     }
 
-    public function loadMoreMessages()
+    #[On('echo-private:community-channel.{communityId},MessageSent')]
+    public function listenForMessage($event)
     {
-        if ($this->hasMoreMessages) {
-            $this->page++;
-            $this->loadMessages();
-        }
+        $msg = Message::findOrFail($event['message']['id']);
+        $this->messages->prepend($msg);
+        $this->dispatch('refresh');
     }
 
     public function render()
     {
-        return view('livewire.chats.communities.chat')->layout('frontend.layouts.master');
+
+        return view('livewire.chats.communities.chat');
     }
 }

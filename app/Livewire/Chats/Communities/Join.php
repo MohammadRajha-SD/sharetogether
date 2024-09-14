@@ -19,9 +19,8 @@ class Join extends Component
 
     public function joinCommunity($id)
     {
-        $this->community = Community::findOrFail($id);
-
         $community = Community::findOrFail($id);
+
         $user = auth()->user();
 
         if (!$user->communities->contains($community->id)) {

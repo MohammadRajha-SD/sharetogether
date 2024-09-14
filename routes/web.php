@@ -8,7 +8,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Frontend\LocationController;
 use App\Http\Controllers\Frontend\SettingsController;
 use App\Http\Controllers\Frontend\RealEstatePostController;
-use App\Livewire\Chats\Communities\Chat as ChatCommunity;
+use App\Livewire\Chats\Communities\Main as ChatCommunity;
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 

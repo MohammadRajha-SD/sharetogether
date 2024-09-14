@@ -11,6 +11,6 @@
     </style>
 
     @foreach ($communities as $community)
-        <button class="dropdown-item" wire:click="joinCommunity('{{$community->id}}')">{{ $community->name }}</button>
+        <button class="dropdown-item" wire:click.prevent="joinCommunity('{{$community->id}}')">{{ $community->name }}</button>
     @endforeach
 </div>
