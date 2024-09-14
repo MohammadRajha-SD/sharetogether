@@ -9,6 +9,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index(Category $category) {
+
         return view('frontend.posts.index', ['category' => $category]);
     }
 

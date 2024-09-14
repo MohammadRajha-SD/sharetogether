@@ -1,5 +1,3 @@
-<!-- Title -->
-<title> Home </title>
 <link rel="icon" href="{{URL::asset('images/logo.png')}}" type="image/x-icon"/>
 <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">

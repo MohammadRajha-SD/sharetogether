@@ -1,171 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Styled Amount Selector</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .custom-select-wrapper {
-            display: flex;
-            align-items: center;
-            max-width: 400px;
-            margin: 20px auto;
-        }
-        .custom-select-wrapper select,
-        .custom-select-wrapper input {
-            margin: 0 5px;
-        }
-        .custom-select-wrapper input {
-            display: none; /* Hide custom input by default */
-        }
-        .custom-select-wrapper.show-custom input {
-            display: block; /* Show custom input when needed */
-        }
-        .custom-select-wrapper .form-control {
-            width: 100%;
-=======
-    <title>Property Type Dropdown</title>
-    <!-- Bootstrap 4.1 CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .dropdown-menu-custom {
-            padding: 20px;
-            width: 300px; /* Custom width */
-        }
 
-        .property-option {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .property-option:hover {
-            background-color: #f0f0f0;
-        }
-
-        .property-option.active {
-            background-color: #333;
-            color: #fff;
->>>>>>> origin/main
-        }
-    </style>
-</head>
-<body>
-<<<<<<< HEAD
-<div class="container">
-    <div class="custom-select-wrapper">
-        <select id="amount-select" class="form-control">
-            <option value="" disabled selected>Select amount</option>
-            <!-- Options will be added by jQuery -->
-        </select>
-        <input type="number" id="custom-amount" class="form-control" placeholder="Enter amount">
-    </div>
+<div class="card d-flex flex-column h-100">
+	<div class="card-header">
+		<h1>Welcome to the {{ $communityName }} Chat</h1>
+	</div>
+	<div class="card-body flex-fill">
+		<div id="chat-box">
+			<!-- Chat content goes here -->
+			<ul>
+				li
+			</ul>
+		</div>
+	</div>
+	<div class="card-footer">
+		<input type="text" name="message" placeholder="Type a message..." class="form-control">
+		<button type="submit" class="btn btn-primary mt-2">Send</button>
+	</div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Populate the select options
-        for (let amount = 60000; amount <= 500000; amount += 10000) {
-            $('#amount-select').append(
-                `<option value="${amount}">${amount.toLocaleString()}</option>`
-            );
-        }
 
-        // Toggle custom input visibility based on selection
-        $('#amount-select').on('change', function() {
-            if ($(this).val() === "") {
-                $('.custom-select-wrapper').addClass('show-custom');
-                $('#custom-amount').focus();
-            } else {
-                $('.custom-select-wrapper').removeClass('show-custom');
-                $('#custom-amount').val(''); // Clear custom input if option is selected
-            }
-=======
-<div class="container my-5">
-    <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            Property Type
-        </button>
-        <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton">
-            <div class="d-flex justify-content-between mb-3">
-                <span>Property Type</span>
-                <a href="#" id="doneBtn" class="text-primary">Done</a>
-            </div>
-            <div class="row">
-                <div class="col-6 mb-2">
-                    <div class="property-option active" data-value="Any">Any</div>
-                </div>
-                <div class="col-6 mb-2">
-                    <div class="property-option" data-value="House">House</div>
-                </div>
-                <div class="col-6 mb-2">
-                    <div class="property-option" data-value="Condo">Condo</div>
-                </div>
-                <div class="col-6 mb-2">
-                    <div class="property-option" data-value="Townhome">Townhome</div>
-                </div>
-                <div class="col-6 mb-2">
-                    <div class="property-option" data-value="Multi Family">Multi Family</div>
-                </div>
-                <div class="col-6 mb-2">
-                    <div class="property-option" data-value="Mobile">Mobile</div>
-                </div>
-                <div class="col-6 mb-2">
-                    <div class="property-option" data-value="Farm">Farm</div>
-                </div>
-                <div class="col-6 mb-2">
-                    <div class="property-option" data-value="Land">Land</div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+<div class="main-chat-msg-name">
+	<h6>Reynante Labares</h6><small>Last seen: 2 minutes ago</small>
 </div>
+<nav class="nav">
+	<a class="nav-link" href=""><i class="icon ion-md-more"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Call"><i class="icon ion-ios-call"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Archive"><i class="icon ion-ios-filing"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Trash"><i class="icon ion-md-trash"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="View Info"><i class="icon ion-md-information-circle"></i></a>
+</nav>
 
-<!-- Add jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap 4.1 JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        var selectedProperty = 'Any'; // Default value
+{{-- 00000000000000000000 --}}
 
-        // Handle click on property options
-        $('.property-option').on('click', function () {
-            // Remove active class from other options
-            $('.property-option').removeClass('active');
 
-            // Add active class to clicked option
-            $(this).addClass('active');
-
-            // Update selectedProperty value
-            selectedProperty = $(this).data('value');
-        });
-
-        // Prevent dropdown from closing on property option click
-        $('.dropdown-menu').on('click', function (e) {
-            e.stopPropagation();
-        });
-
-        // Handle click on Done button
-        $('#doneBtn').on('click', function (e) {
-            e.preventDefault();
-
-            // Update the dropdown text with the selected property type
-            $('#dropdownMenuButton').text(selectedProperty);
-
-            // Close the dropdown
-            $('#dropdownMenuButton').dropdown('toggle');
->>>>>>> origin/main
-        });
-    });
-</script>
-</body>
-</html>
+<div class="main-chat-body main-scrolled" id="ChatBody">
+	<div class="content-inner">
+		<label class="main-chat-time"><span>3 days ago</span></label>
+		<div class="media flex-row-reverse">
+			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+			<div class="media-body">
+				<div class="main-msg-wrapper right">
+					Nulla consequat massa quis enim. Donec pede justo, fringilla vel...
+				</div>
+				<div class="main-msg-wrapper right">
+					rhoncus ut, imperdiet a, venenatis vitae, justo...
+				</div>
+				<div class="main-msg-wrapper pd-0"><img alt="" class="wd-100 ht-100" src="{{URL::asset('assets/img/ecommerce/01.jpg')}}"></div>
+				<div>
+					<span>9:48 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="media">
+			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div>
+			<div class="media-body">
+				<div class="main-msg-wrapper left">
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+				</div>
+				<div>
+					<span>9:32 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="media flex-row-reverse">
+			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+			<div class="media-body">
+				<div class="main-msg-wrapper right">
+					Nullam dictum felis eu pede mollis pretium
+				</div>
+				<div>
+					<span>11:22 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+				</div>
+			</div>
+		</div><label class="main-chat-time"><span>Yesterday</span></label>
+		<div class="media">
+			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div>
+			<div class="media-body">
+				<div class="main-msg-wrapper left">
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+				</div>
+				<div>
+					<span>9:32 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="media flex-row-reverse">
+			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+			<div class="media-body">
+				<div class="main-msg-wrapper right">
+					Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+				</div>
+				<div class="main-msg-wrapper right">
+					Nullam dictum felis eu pede mollis pretium
+				</div>
+				<div>
+					<span>9:48 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+				</div>
+			</div>
+		</div><label class="main-chat-time"><span>Today</span></label>
+		<div class="media">
+			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div>
+			<div class="media-body">
+				<div class="main-msg-wrapper left">
+					Maecenas tempus, tellus eget condimentum rhoncus
+				</div>
+				<div class="main-msg-wrapper left">
+					Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
+				</div>
+				<div>
+					<span>10:12 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="media flex-row-reverse">
+			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
+			<div class="media-body">
+				<div class="main-msg-wrapper right">
+					Maecenas tempus, tellus eget condimentum rhoncus
+				</div>
+				<div class="main-msg-wrapper right">
+					Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
+				</div>
+				<div>
+					<span>09:40 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

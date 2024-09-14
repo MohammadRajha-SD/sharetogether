@@ -8,7 +8,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Frontend\LocationController;
 use App\Http\Controllers\Frontend\SettingsController;
 use App\Http\Controllers\Frontend\RealEstatePostController;
-use App\Http\Controllers\Frontend\CommunityController;
+use App\Livewire\Chats\Communities\Chat as ChatCommunity;
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
@@ -35,10 +35,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         // Real Estate Posts Routes
         Route::resource('real-estate', RealEstatePostController::class);
 
-        Route::get('/communities', [CommunityController::class, 'index'])->name('community.index');
-        Route::post('/communities/join/{id}', [CommunityController::class, 'joinCommunity'])->name('community.join');
-        Route::get('/communities/chat/{id}', [CommunityController::class, 'chat'])->name('community.chat');
-
+        Route::get('/communities/chat/{slug}', ChatCommunity::class)->name('community.chat');
     });
 
     Route::get('/test', function () {
