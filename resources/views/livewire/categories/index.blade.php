@@ -1,4 +1,4 @@
-<ul class="category-sidebar nav flex-column " style="padding-top:35px;">
+<ul class="category-sidebar nav flex-column " >
     @php
         $categories = config('categories')['categories'];
         $menuItems = [

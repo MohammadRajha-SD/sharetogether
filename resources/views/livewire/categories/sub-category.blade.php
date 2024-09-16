@@ -1,4 +1,4 @@
-<div class="category-content">
+<div class="category-content" >
     <div class="scroll-subcategories subcategories_hovered" style="box-shadow: none">
         @if(isset($category) && is_array($category) && array_key_exists('subcategories', $category) && !empty($category['subcategories']))
             @if($category['slug']==='garage-sale')
