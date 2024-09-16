@@ -1,7 +1,7 @@
 <div>
     <style>
         .custom-dropdown {
-            width: 125px;
+            width: 200px;
         }
 
         .custom-dropdown .dropdown-item {

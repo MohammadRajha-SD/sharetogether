@@ -32,7 +32,6 @@ class Chat extends Component
         $this->loadMessages();
     }
 
-
     public function loadMessages()
     {
         $query = Message::where('community_id', $this->communityId)->orderBy('created_at', 'desc');
@@ -62,6 +61,7 @@ class Chat extends Component
             broadcast(new MessageSent($chatMessage))->toOthers();
 
             $this->message = '';
+        
         }
     }
 
