@@ -13,11 +13,38 @@
 		@livewireStyles
 	</head>
 
-	<body >
+	<body class="main-body" >
+		<!-- Loader -->
+		<div id="global-loader">
+            <img src="{{asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
+		</div>
+		<!-- /Loader -->
+
 		@include('frontend.layouts.main-header')
-		@yield('content')
-		@include('frontend.layouts.footer-scripts')
-		@livewireScripts
-		<x-frontend.flash />
+
+		@if (!view()->yieldContent('is_community_page'))
+			@if(request()->is('real-estate*'))
+				@include('frontend.real-estate.header')
+			@else
+				@include('frontend.categories.header')
+			@endif
+		@endif
+
+		<!-- main-content opened -->
+		<div class=" {{!view()->yieldContent('is_community_page') ? 'main-content horizontal-content ' : 'pt-5 mt-4'}}" style="">
+			<!-- container opened -->
+			<div class="{{request()->is('real-estate.index') ? '' : 'container'}}">
+				@yield('page-header')
+				@yield('content')
+
+				{{-- @include('frontend.layouts.sidebar-right') --}}
+				{{-- @include('frontend.layouts.models') --}}
+				@include('frontend.layouts.footer-scripts')
+
+			    <x-frontend.flash />
+				
+				@livewireScripts
+            </div>
+        </div>
 	</body>
 </html>

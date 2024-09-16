@@ -430,7 +430,7 @@ return [
             'id' => 1,
             'name' => 'Community',
             'slug' => 'community',
-            'icon' => 'fa-users',
+            'icon' => 'bi-people',
             'subcategories' => [
                 [
                     'id' => 0,
@@ -1855,7 +1855,7 @@ return [
             'id' => 2,
             'name' => 'Farm Products',
             'slug' => 'farm-products',
-            'icon' => 'fa-tractor',
+            'icon' => 'bi-truck',
             'subcategories' => [
                 [
                     'id' => 0,
@@ -1883,7 +1883,7 @@ return [
             'id' => 3,
             'name' => 'Business',
             'slug' => 'business',
-            'icon' => 'fa-briefcase',
+            'icon' => 'bi-briefcase',
             'subcategories' => [
                 [
                     'id' => 0,
@@ -2068,7 +2068,7 @@ return [
             'id' => 4,
             'name' => 'Garage Sale',
             'slug' => 'garage-sale',
-            'icon' => 'fa-shopping-cart',
+            'icon' => 'bi-cart',
             'is_fields' => true,
             'subcategories' => [
                 [

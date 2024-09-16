@@ -1,4 +1,4 @@
-<form>
+<form class="p-3">
     <!-- Time -->
     <div class="mb-3">
         <label for="time" class="form-label">Time</label>

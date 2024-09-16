@@ -19600,7 +19600,7 @@ object, embed, video {
     width: inherit; }
   .horizontalMenucontainer .main-header.hor-header {
     position: fixed;
-    box-shadow: 0 0 10px rgba(28, 39, 60, 0.2);
+    /* box-shadow: 0 0 10px rgba(28, 39, 60, 0.2); */
     border-bottom: 1px solid #d3dfef; } }
 
 @media (min-width: 550px) {

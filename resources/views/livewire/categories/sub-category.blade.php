@@ -1,55 +1,16 @@
-<div>
-    <div class="scroll-subcategories subcategories_hovered card py-3 mt-2 px-2 mx-0 " style="box-shadow: none">
+<div class="category-content">
+    <div class="scroll-subcategories subcategories_hovered" style="box-shadow: none">
         @if(isset($category) && is_array($category) && array_key_exists('subcategories', $category) && !empty($category['subcategories']))
             @if($category['slug']==='garage-sale')
                 @include('livewire.categories.category-fields-garage-sale')
             @else
-                @foreach($category['subcategories'] as $sub)
-                    <div class="category-container" id="{{$sub['slug']}}">
-                        <div class="main-category">
-                            <div class="main-category-header">{{$sub['name']}}</div>
-                        </div>
-
-
-                        <div class="subcategory-list">
-                            @if(isset($sub) && is_array($sub) && array_key_exists('subcategories', $sub) && !empty($sub['subcategories']))
-                                @foreach($sub['subcategories'] as $child)
-                                    <div class="subcategory-item">
-                                        <div class="subcategory-title">{{$child['name']}}</div>
-
-
-                                        @if(isset($child) && is_array($child) && array_key_exists('subcategories', $child) && !empty($child['subcategories']))
-
-                                            @foreach($child['subcategories'] as $subchild)
-                                                @if(isset($subchild) && is_array($subchild) && array_key_exists('subcategories', $subchild) && !empty($subchild['subcategories']))
-                                                    <br/>
-                                                    <strong> {{$subchild['name']}} : </strong>
-                                                    @foreach($subchild['subcategories'] as $minichild)
-                                                        {{$minichild['name']}} @if(!$loop->last)
-                                                            <b>|</b>
-                                                        @endif
-                                                    @endforeach
-                                                    <br/>
-                                                @else
-                                                    {{$subchild['name']}} @if(!$loop->last)
-                                                        <b>|</b>
-                                                    @endif
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-
-
-                    </div>
-                @endforeach
+                @include('livewire.categories.subcategory-container')
             @endif
         @else
             <h1 class="text-center">Advertisement</h1>
         @endif
     </div>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

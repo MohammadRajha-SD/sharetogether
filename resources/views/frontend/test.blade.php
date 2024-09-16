@@ -1,127 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-<div class="card d-flex flex-column h-100">
-	<div class="card-header">
-		<h1>Welcome to the {{ $communityName }} Chat</h1>
-	</div>
-	<div class="card-body flex-fill">
-		<div id="chat-box">
-			<!-- Chat content goes here -->
-			<ul>
-				li
-			</ul>
-		</div>
-	</div>
-	<div class="card-footer">
-		<input type="text" name="message" placeholder="Type a message..." class="form-control">
-		<button type="submit" class="btn btn-primary mt-2">Send</button>
-	</div>
+        .category-list {
+            background-color: #f8f9fa;
+            height: 100vh;
+            padding: 0;
+            overflow-y: auto; /* Enables scrolling */
+        }
+
+        .category-list .list-group-item {
+            cursor: pointer;
+        }
+
+        .category-list .list-group-item.active {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #ffffff;
+            border-left: 1px solid #dee2e6;
+            overflow-y: auto; /* Enables scrolling */
+            max-height: 100vh;
+        }
+
+        .content h5 {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .content ul {
+            padding-left: 20px;
+        }
+
+        .content ul li {
+            line-height: 1.8;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar for Categories -->
+        <div class="col-md-2">
+            <ul class="list-group category-list">
+                <li class="list-group-item active" id="mobile-phone">Mobile phone / digital</li>
+                <li class="list-group-item">Home appliances</li>
+                <li class="list-group-item">Computer / Office</li>
+                <li class="list-group-item">Home Textiles / Home Furnishing</li>
+                <li class="list-group-item">Furniture / Home Decoration</li>
+                <li class="list-group-item">Underwear / Men's wear / Women's wear</li>
+                <li class="list-group-item">Bags / Watches / Jewelry</li>
+                <li class="list-group-item">Sports / Outdoor / Men's Shoes / Women's Shoes</li>
+                <li class="list-group-item">Car Supplies / Car Electrical Appliances</li>
+                <li class="list-group-item">Mother and baby / Nursing and feeding</li>
+                <li class="list-group-item">Toys and musical instruments</li>
+                <li class="list-group-item">Household cleaning / Personal care</li>
+                <li class="list-group-item">Books / Children's Books / Literature</li>
+            </ul>
+        </div>
+
+        <!-- Content for Subcategories -->
+        <div class="col-md-10">
+            <div class="content">
+                <!-- Buttons for Subcategory Channels -->
+                <div class="btn-group mb-3" role="group">
+                    <button type="button" class="btn btn-dark">3C Channel</button>
+                    <button type="button" class="btn btn-dark">Mobile Channel</button>
+                    <button type="button" class="btn btn-dark">Accessories Selection Center</button>
+                    <button type="button" class="btn btn-dark">Smart Digital</button>
+                </div>
+
+                <!-- Subcategories for Mobile Phone -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>Mobile phone</h5>
+                        <ul class="list-unstyled">
+                            <li>All mobile phones</li>
+                            <li>5G mobile phone</li>
+                            <li>Gaming Phone</li>
+                            <li>Camera Phone</li>
+                            <li>Full screen mobile phone</li>
+                            <li>Elderly phone</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Mobile phone storage</h5>
+                        <ul class="list-unstyled">
+                            <li>32GB</li>
+                            <li>64GB</li>
+                            <li>128GB</li>
+                            <li>256GB</li>
+                            <li>512GB</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Mobile phone recommendation</h5>
+                        <ul class="list-unstyled">
+                            <li>Face Recognition</li>
+                            <li>Fast charging</li>
+                            <li>Screen fingerprint</li>
+                            <li>Wireless charging</li>
+                            <li>Rugged Phone</li>
+                            <li>Long battery life</li>
+                            <li>Ultra-high screen-to-body ratio</li>
+                            <li>NFC</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Mobile phone accessories</h5>
+                        <ul class="list-unstyled">
+                            <li>Phone Case/Protective Cover</li>
+                            <li>Mobile phone film</li>
+                            <li>Data cable</li>
+                            <li>charger</li>
+                            <li>Mobile Phone Headset</li>
+                            <li>Fashionable toys</li>
+                            <li>Mobile phone batteries</li>
+                            <li>Apple peripherals</li>
+                            <li>Qi Wireless Charging</li>
+                            <li>Bluetooth Headset</li>
+                            <li>Photo accessories</li>
+                            <li>Mobile phone memory card</li>
+                            <li>Mobile phone holder</li>
+                            <li>Gamepad</li>
+                            <li>Car Accessories</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Additional Subcategories (Photography, Accessories) -->
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <h5>Photography and Videography</h5>
+                        <ul class="list-unstyled">
+                            <li>digital camera</li>
+                            <li>Mirrorless camera</li>
+                            <li>SLR camera</li>
+                            <li>Polaroid</li>
+                            <li>Action Camera</li>
+                            <li>Camera</li>
+                            <li>Lenses</li>
+                            <li>Studio Equipment</li>
+                            <li>Outdoor equipment</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Digital accessories</h5>
+                        <ul class="list-unstyled">
+                            <li>Handheld Stabilizer</li>
+                            <li>Memory Card</li>
+                            <li>Tripod/Pan Head</li>
+                            <li>Camera Bags</li>
+                            <li>Filters</li>
+                            <li>Flash/handle</li>
+                            <li>Battery/Charger</li>
+                            <li>Body accessories</li>
+                            <li>Card reader</li>
+                            <li>Camera cleaning/film</li>
+                            <li>Lens accessories</li>
+                            <li>Digital Stand</li>
+                        </ul>
+                    </div>
+                    <!-- Additional columns as needed -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.list-group-item').hover(function() {
+            // Remove active class from all list items
+            $('.list-group-item').removeClass('active');
+            // Add active class to the hovered list item
+            $(this).addClass('active');
 
-<div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
-<div class="main-chat-msg-name">
-	<h6>Reynante Labares</h6><small>Last seen: 2 minutes ago</small>
-</div>
-<nav class="nav">
-	<a class="nav-link" href=""><i class="icon ion-md-more"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Call"><i class="icon ion-ios-call"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Archive"><i class="icon ion-ios-filing"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Trash"><i class="icon ion-md-trash"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="View Info"><i class="icon ion-md-information-circle"></i></a>
-</nav>
+            // Get the target subcategory content ID
+            var target = $(this).data('target');
 
+            // Hide all subcategory contents
+            $('.subcategory-content').removeClass('active');
 
-{{-- 00000000000000000000 --}}
+            // Show the targeted subcategory content
+            $('#' + target + '-content').addClass('active');
+        });
+    });
 
-
-<div class="main-chat-body main-scrolled" id="ChatBody">
-	<div class="content-inner">
-		<label class="main-chat-time"><span>3 days ago</span></label>
-		<div class="media flex-row-reverse">
-			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
-			<div class="media-body">
-				<div class="main-msg-wrapper right">
-					Nulla consequat massa quis enim. Donec pede justo, fringilla vel...
-				</div>
-				<div class="main-msg-wrapper right">
-					rhoncus ut, imperdiet a, venenatis vitae, justo...
-				</div>
-				<div class="main-msg-wrapper pd-0"><img alt="" class="wd-100 ht-100" src="{{URL::asset('assets/img/ecommerce/01.jpg')}}"></div>
-				<div>
-					<span>9:48 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="media">
-			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div>
-			<div class="media-body">
-				<div class="main-msg-wrapper left">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</div>
-				<div>
-					<span>9:32 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="media flex-row-reverse">
-			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
-			<div class="media-body">
-				<div class="main-msg-wrapper right">
-					Nullam dictum felis eu pede mollis pretium
-				</div>
-				<div>
-					<span>11:22 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-				</div>
-			</div>
-		</div><label class="main-chat-time"><span>Yesterday</span></label>
-		<div class="media">
-			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div>
-			<div class="media-body">
-				<div class="main-msg-wrapper left">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</div>
-				<div>
-					<span>9:32 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="media flex-row-reverse">
-			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
-			<div class="media-body">
-				<div class="main-msg-wrapper right">
-					Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-				</div>
-				<div class="main-msg-wrapper right">
-					Nullam dictum felis eu pede mollis pretium
-				</div>
-				<div>
-					<span>9:48 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-				</div>
-			</div>
-		</div><label class="main-chat-time"><span>Today</span></label>
-		<div class="media">
-			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></div>
-			<div class="media-body">
-				<div class="main-msg-wrapper left">
-					Maecenas tempus, tellus eget condimentum rhoncus
-				</div>
-				<div class="main-msg-wrapper left">
-					Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
-				</div>
-				<div>
-					<span>10:12 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="media flex-row-reverse">
-			<div class="main-img-user online"><img alt="" src="{{URL::asset('assets/img/faces/9.jpg')}}"></div>
-			<div class="media-body">
-				<div class="main-msg-wrapper right">
-					Maecenas tempus, tellus eget condimentum rhoncus
-				</div>
-				<div class="main-msg-wrapper right">
-					Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
-				</div>
-				<div>
-					<span>09:40 am</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+</script>
+</body>
+</html>
