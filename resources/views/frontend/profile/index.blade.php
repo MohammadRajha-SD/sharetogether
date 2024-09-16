@@ -6,12 +6,12 @@
 @endsection
 
 @section('content')
-    <div class="row mx-0 mt-5 " >
-        <div class="col-lg-3 col-md-4 p-0" >
+    <div class="row m-0 p-0" style="margin-top:60px !important;" >
+        <div class="col-lg-3 col-md-4 p-0 m-0"  style="height: calc(100vh - 60px);">
             @include('frontend.profile.user-card')
         </div>
 
-        <div class="col-lg-9 col-md-8  p-0">
+        <div class="col-lg-9 col-md-8  p-0 m-0" style=" overflow-y:auto; height: calc(100vh - 60px);">
             @include('frontend.profile.tabs.index')
         </div>
     </div>

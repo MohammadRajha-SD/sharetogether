@@ -1,4 +1,4 @@
-<div class="card " style="box-shadow:none; ">
+<div class="card " style="box-shadow:none;" >
     <div class="card-body">
         <div class="tabs-menu">
             <ul class="nav nav-tabs profile navtab-custom panel-tabs">
@@ -25,8 +25,7 @@
             </ul>
         </div>
 
-        <div class="tab-content border-left border-bottom border-right border-top-0 p-4"
-            style="overflow-y: scroll;">
+        <div class="tab-content border-left border-bottom border-right border-top-0 p-4" >
             <div class="tab-pane " id="profile-info">
                 @include('frontend.profile.tabs.profile-info')
             </div>
@@ -35,11 +34,11 @@
                 @include('frontend.profile.tabs.update-password-form')
             </div>
 
-            <div class="tab-pane active" id="location">
+            <div class="tab-pane " id="location">
                 @include('frontend.profile.tabs.update-location-form')
             </div>
 
-            <div class="tab-pane " id="real-estate">
+            <div class="tab-pane active" id="real-estate" >
                 @include('frontend.profile.tabs.real-estate')
             </div>
         </div>
