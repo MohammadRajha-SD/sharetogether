@@ -1,6 +1,6 @@
 @php
     $occupations = App\Models\Occupation::all();
-    $categories = App\Models\Category::whereNull('parent_id')->get();
+    $categories = config('categories.categories');
 @endphp
 
 <form role="form" method="POST" action="{{route('profile.update')}}">

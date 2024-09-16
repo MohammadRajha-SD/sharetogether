@@ -25,8 +25,6 @@
 		@if (!view()->yieldContent('is_community_page'))
 			@if(request()->is('real-estate*'))
 				@include('frontend.real-estate.header')
-			@else
-				@include('frontend.categories.header')
 			@endif
 		@endif
 

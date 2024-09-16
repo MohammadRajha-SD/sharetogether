@@ -27,8 +27,9 @@
     @yield('content')
 
 	@include('frontend.layouts.footer-scripts')
+
     @livewireScripts
+    
     <x-frontend.flash />
 </body>
-
 </html>

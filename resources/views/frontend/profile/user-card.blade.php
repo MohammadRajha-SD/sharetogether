@@ -1,13 +1,10 @@
-<div class="card mg-b-20">
+<div class="card"  style="height:100vh">
     <div class="card-body">
         <div class="pl-0">
             <div class="main-profile-overview">
                 <div class="main-img-user profile-user">
                     <img alt="" src="{{asset(check_image($user))}}" />
-                    <!-- Button to trigger modal -->
                     <a class="fas fa-camera profile-edit" href="JavaScript:void(0);" data-toggle="modal" data-target="#imageModal"></a>
-
-                    <!-- Modal -->
                     @include('frontend.profile.modal')
                 </div>
 
@@ -21,7 +18,6 @@
                 <h6>Bio</h6>
 
                 <div class="main-profile-bio"> {{$user->details->bio}} </div>
-                <!-- main-profile-bio -->
                 <div class="row">
                     <div class="col-md-4 col mb20">
                         <h5>947</h5>
@@ -37,7 +33,6 @@
                     </div>
                 </div>
             </div>
-            <!-- main-profile-overview -->
         </div>
     </div>
 </div>

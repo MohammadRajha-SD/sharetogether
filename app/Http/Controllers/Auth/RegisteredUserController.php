@@ -21,9 +21,9 @@ class RegisteredUserController extends Controller
 {
     public function create(): View
     {
-        $categories = Category::where('parent_id', null)->get();
         $countries = Country::all();
         $occupations = Occupation::all();
+        $categories = config('categories.categories');
 
         return view('auth.register', compact('occupations', 'countries', 'categories'));
     }

@@ -7,6 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <form id="imageForm" method="POST" action="{{route('profile.image.update')}}" enctype="multipart/form-data">
                 @csrf
                 @method('patch')

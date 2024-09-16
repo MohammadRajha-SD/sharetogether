@@ -33,4 +33,3 @@
 <script src="{{URL::asset('assets/js/advanced-form-elements.js')}}"></script>
 <script src="{{URL::asset('assets/js/select2.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
