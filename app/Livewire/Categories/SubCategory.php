@@ -12,6 +12,7 @@ class SubCategory extends Component
 
     public function mount(){
         $this->category = collect();
+        $this->loadSubcategories(1);
     }
 
     public function loadSubcategories($categoryId)

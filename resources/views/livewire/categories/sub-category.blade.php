@@ -7,14 +7,12 @@
                 @include('livewire.categories.subcategory-container')
             @endif
         @else
-            <h1 class="text-center">Advertisement</h1>
+            @include('livewire.categories.advertisement')
         @endif
     </div>
 
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- JavaScript -->
     <script>
         $(document).ready(function () {
             $('body').on('mouseleave', '.subcategories_hovered', function () {
