@@ -2,7 +2,10 @@
     $locales = LaravelLocalization::getSupportedLocales();
     $currentLocale = LaravelLocalization::getCurrentLocale();
     unset($locales[$currentLocale]);
+
+    $main_categories = config('categories')['main-categories'];
 @endphp
+
 <style>
     @media (max-width: 769px) {
         .logo {
@@ -30,7 +33,7 @@
         }
     }
 </style>
-<!-- main-header opened -->
+
 <div class="main-header nav nav-item hor-header">
     <div class="container">
         <div class="main-header-left">
@@ -41,7 +44,28 @@
             </a>
         </div>
 
-        {{-- @include('frontend.layouts.horizontal-menu') --}}
+        <nav class="horizontalMenu clearfix">
+            <ul class="horizontalMenu-list d-flex">
+                @foreach ($main_categories as $main_category)
+                    @if ($main_category['slug'] === 'homeless')
+                        <div class="dropdown">
+                            <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary"
+                                data-toggle="dropdown" id="dropdownMenuButton" type="button">
+                                {{ $main_category['name'] }}<i class="fas fa-caret-down ml-1"></i>
+                            </button>
+                            <div class="dropdown-menu tx-13 custom-dropdown">
+                                @livewire('chats.communities.join')
+                            </div>
+                        </div>
+                    @else
+                        <a 
+                        href="#{{$main_category['slide_to']}}" 
+                        data-category-id="{{$main_category['category_id']?? null}}"
+                        class="main-category-clicked btn btn-danger mr-1 rounded text-black font-weight-bold"> {{$main_category['name']}}</a>
+                    @endif
+                @endforeach
+            </ul>
+        </nav>
 
         <div class="main-header-right">
             {{-- languages start --}}
@@ -83,7 +107,8 @@
                                     <div class="image-user"><img alt=""
                                             src="{{ asset(check_image(auth()->user())) }}" class=""></div>
                                     <div class="ml-2 my-auto">
-                                        <h6>{{ auth()->user()->username }}</h6><span>{{ auth()->user()->email }}</span>
+                                        <h6>{{ auth()->user()->username }}</h6>
+                                        <span>{{ auth()->user()->email }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -115,4 +140,16 @@
         </div>
     </div>
 </div>
-<!-- /main-header -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- JavaScript -->
+<script>
+    $(document).ready(function () {
+        $('body').on('click', '.main-category-clicked', function () {
+            const categoryId = $(this).data('category-id');
+            Livewire.dispatch('loadSubcategories', { categoryId: categoryId });
+        });
+    });
+</script>

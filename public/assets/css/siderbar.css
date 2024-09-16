@@ -1,23 +1,28 @@
 /* Category Siderbar */
 .category-sidebar {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
     background: white;
+    margin-top: 35px;
     border-right: 2px solid #f8f9fa;
 }
 .nav-link-category {
     border-radius: 40px;
     width:80%;
+    padding:4px 10px;
     color: #606060ff;
-    font-size:20px !important;
+    font-size:16px !important;
     transition: 0.3s;
 }
 .nav-link-category:hover{
     background-color: #fec7bdff;
     color:#eb1700ff;
 }
-
+.seprator {
+    border-bottom: 1px solid #ddd;
+  }
+  
 /* Category Content */
 .category-content {
     padding-top:65px;
