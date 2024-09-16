@@ -2096,3 +2096,37 @@ return [
     ],
 ];
 
+// $categories = [
+//     [
+//         'id' => 1,
+//         'name' => 'Charity',
+//         'slug' => 'charity',
+//         'subcategories' => [
+//             [
+//                 'id' => 2,
+//                 'name' => 'Food Distribution',
+//                 'slug' => 'food-distribution',
+//             ],
+//             [
+//                 'id' => 3,
+//                 'name' => 'Food Recycle Organic Compost',
+//                 'slug' => 'food-recycle-organic-compost',
+//             ],
+//             [
+//                 'id' => 4,
+//                 'name' => 'Warehouse of Various Food',
+//                 'slug' => 'warehouse-of-various-food',
+//             ],
+//             [
+//                 'id' => 5,
+//                 'name' => 'Prayer Chain',
+//                 'slug' => 'prayer-chain',
+//             ],
+//             [
+//                 'id' => 6,
+//                 'name' => 'Tax Deduction',
+//                 'slug' => 'tax-deduction',
+//             ],
+//         ],
+//     ],
+// ];
