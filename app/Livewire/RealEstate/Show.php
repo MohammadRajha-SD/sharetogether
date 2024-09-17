@@ -15,6 +15,11 @@ class Show extends Component
     {
         $this->real_estate_post = RealEstatePost::findOrFail($id);
         $this->formData = $this->real_estate_post->toArray();
+
+        if ($this->real_estate_post->user_id != auth()->user()->id && $this->real_estate_post->visibility === 0) {
+            session()->flash('error', 'Sorry, this real estate post is private.');
+            return redirect()->route('real-estate.index');
+        }
     }
 
     // HIDE FUNCTION 

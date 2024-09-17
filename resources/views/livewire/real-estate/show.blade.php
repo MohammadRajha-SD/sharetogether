@@ -116,7 +116,7 @@
                         </a>
                     </div>
                     <div class="mx-2">
-                        <p class="text-muted mb-1"><strong>Listed by</strong> Richmond Jones</p>
+                        <p class="text-muted mb-1"><strong>Listed by</strong> {{ucwords(auth()->user()->name)}}</p>
                         <p class="text-muted"><strong>Brokered by</strong> Keller Williams Realty Partners, Inc</p>
                     </div>
                 </div>

@@ -64,6 +64,8 @@ class Index extends Component
     public function render()
     {
         $query = RealEstatePost::query();
+        
+        $query->where('visibility', 1);
 
         // Apply filters
         if ($this->property_type) {
@@ -107,6 +109,7 @@ class Index extends Component
                 $query->where('state', 'like', '%' . $state . '%');
             }
         }
+
 
         $real_estate_posts = $query->paginate($this->limit);
 
