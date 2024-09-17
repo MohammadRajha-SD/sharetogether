@@ -32,4 +32,9 @@ class RealEstatePost extends Model
     {
         return $this->saves()->where('user_id', $userId)->exists();
     }
+
+    // Optionally, define the default value for visibility
+    protected $attributes = [
+        'visibility' => 1, // Public by default
+    ];
 }

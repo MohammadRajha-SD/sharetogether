@@ -16,10 +16,16 @@
 </head>
 
 <body>
+	<!-- Loader -->
+    <div id="global-loader">
+        <img src="{{asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
+    </div>
+    <!-- /Loader -->
+
+
+
     @include('frontend.layouts.navbar')
-
-    @yield('content')
-
+            @yield('content')
     @include('frontend.layouts.footer-scripts')
 
     @livewireScripts

@@ -63,7 +63,6 @@
             padding: 8px;
         }
 
-
         .image-container {
             position: relative;
             max-height: 500px;
@@ -87,6 +86,10 @@
             object-fit: cover;
         }
 
+        .modal-backdrop {
+            position: static;
+        }
+
         @media (max-width: 480px) {
             .side-images {
                 margin-top: 10px;
@@ -105,16 +108,126 @@
 
     <div class="container card pt-3" style="margin-top: 70px; ">
         <div class="row ">
-            <div class="col-12 d-flex">
-                <div>
-                    <a class="btn btn-primary" href="{{ route('real-estate.index') }}">
-                        <i class="bi bi-arrow-left text-white"></i>
-                    </a>
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <div class="d-flex">
+                    <div>
+                        <a class="btn btn-primary" href="{{ route('real-estate.index') }}">
+                            <i class="bi bi-arrow-left text-white"></i>
+                        </a>
+                    </div>
+                    <div class="mx-2">
+                        <p class="text-muted mb-1"><strong>Listed by</strong> Richmond Jones</p>
+                        <p class="text-muted"><strong>Brokered by</strong> Keller Williams Realty Partners, Inc</p>
+                    </div>
                 </div>
-                <div class="mx-2">
-                    <p class="text-muted mb-1"><strong>Listed by</strong> Richmond Jones</p>
-                    <p class="text-muted"><strong>Brokered by</strong> Keller Williams Realty Partners, Inc</p>
-                </div>
+                @if (Auth::check() && Auth::id() === $real_estate_post->user_id)
+                    <div>
+                        <button class="btn btn-warning " wire:click="edit({{ $real_estate_post->id }})">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+
+                        <!-- Delete Button -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#deleteConfirmationModal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
+                            aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this post?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger"
+                                            wire:click="confirmDelete({{ $real_estate_post->id }})">Yes, Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Visibility Button -->
+                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            data-target="#toggleRealEstatePostVisibility">
+                            <i class="bi bi-eye-slash"></i>
+                        </button>
+
+                        <!-- Toggle Confirmation Modal -->
+                        <div class="modal fade" id="toggleRealEstatePostVisibility" tabindex="-1" role="dialog"
+                            aria-labelledby="toggleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="toggleModalLabel">Change Post Visibility to <span
+                                                class="text-danger">
+                                                {{ $real_estate_post->visibility == 1 ? 'private' : 'public' }}</span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to change the visibility of this post to <strong
+                                            class="text-danger">
+                                            {{ $real_estate_post->visibility == 1 ? 'private' : 'public' }} </strong>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger"
+                                            wire:click="hide({{ $real_estate_post->id }})">
+                                            Yes, Change Visibility
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-info" data-toggle="modal" data-target="#shareModal">
+                            <i class="bi bi-share"></i>
+                        </button>
+
+                        <div class="modal fade" id="shareModal" tabindex="-1" role="dialog"
+                            aria-labelledby="shareModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="shareModalLabel">Share Post</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Link Display -->
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="shareLink"
+                                                value="{{ route('real-estate.show', $real_estate_post->id) }}"
+                                                readonly>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success" type="button"
+                                                    onclick="copyToClipboard()">Copy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" id="shareCloseBtn"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="col-md-8">
                 <div class="carousel slide " data-ride="carousel" id="carouselExample2">
@@ -126,15 +239,18 @@
                         @if ($real_estate_post->images)
                             @foreach ($real_estate_post->images as $image)
                                 <div class="carousel-item image-container {{ $loop->first ? 'active' : '' }}">
-                                    <img alt="" class="d-block w-100 img-fluid" src="{{ asset($image->path) }}">
+                                    <img alt="" class="d-block w-100 img-fluid"
+                                        src="{{ asset($image->path) }}">
                                 </div>
                             @endforeach
                         @endif
                     </div>
-                    <a class="carousel-control-prev btn-prev" href="#carouselExample2" role="button" data-slide="prev">
+                    <a class="carousel-control-prev btn-prev" href="#carouselExample2" role="button"
+                        data-slide="prev">
                         <i class="fa fa-angle-left fs-30" aria-hidden="true"></i>
                     </a>
-                    <a class="carousel-control-next btn-next" href="#carouselExample2" role="button" data-slide="next">
+                    <a class="carousel-control-next btn-next" href="#carouselExample2" role="button"
+                        data-slide="next">
                         <i class="fa fa-angle-right fs-30" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -143,15 +259,18 @@
             <div class="col-md-4">
                 <div class="side-images">
                     <div class=" position-relative mb-2">
-                        <img src="{{ asset($real_estate_post->exterior_image_url) }}" alt="" class="img-fluid">
+                        <img src="{{ asset($real_estate_post->exterior_image_url) }}" alt=""
+                            class="img-fluid">
                         <span class="badge badge-image position-absolute">Exterior Image</span>
                     </div>
                     <div class=" position-relative mb-2">
-                        <img src="{{ asset($real_estate_post->kitchen_image_url) }}" alt="" class="img-fluid">
+                        <img src="{{ asset($real_estate_post->kitchen_image_url) }}" alt=""
+                            class="img-fluid">
                         <span class="badge badge-image position-absolute">Kitchen Image</span>
                     </div>
                     <div class=" position-relative">
-                        <img src="{{ asset($real_estate_post->bathroom_image_url) }}" alt="" class="img-fluid">
+                        <img src="{{ asset($real_estate_post->bathroom_image_url) }}" alt=""
+                            class="img-fluid">
                         <span class="badge badge-image position-absolute">Bathroom Image</span>
                     </div>
                 </div>
@@ -300,4 +419,17 @@
             {{--        </div> --}}
         </div>
     </div>
+    <script>
+        function copyToClipboard() {
+            var copyText = document.getElementById("shareLink");
+
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+
+            document.execCommand("copy");
+            document.getElementById('shareCloseBtn').click();
+
+            toastr.success("Link copied to clipboard!");
+        }
+    </script>
 </div>

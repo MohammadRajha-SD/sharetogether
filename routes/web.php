@@ -39,6 +39,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         // Real Estate Posts Routes
         Route::get('real-estates', RealEstateMain::class)->name('real-estate.index');
         Route::get('real-estates/{id}', RealEstateShow::class)->name('real-estate.show');
+
         Route::get('/communities/chat/{slug}', ChatCommunity::class)->name('community.chat');
     });
 
