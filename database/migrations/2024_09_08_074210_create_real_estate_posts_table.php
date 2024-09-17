@@ -17,9 +17,9 @@ return new class extends Migration
             $table->integer('sqft')->nullable();
             $table->decimal('acre_lot', 4, 2);
             $table->string('address');
-            $table->string('state');
-            $table->string('city');
-            $table->string('property_type'); // e.g., House, Apartment, etc.
+            $table->integer('state');
+            $table->integer('city');
+            $table->string('property_type');
             $table->enum('listing_type', ['rent', 'sale']); // Rent or Sale
             $table->string('garage')->nullable();
             $table->integer('year_built')->nullable(); // Year built added

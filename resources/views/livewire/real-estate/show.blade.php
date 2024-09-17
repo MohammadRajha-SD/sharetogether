@@ -122,9 +122,11 @@
                 </div>
                 @if (Auth::check() && Auth::id() === $real_estate_post->user_id)
                     <div>
-                        <button class="btn btn-warning " wire:click="edit({{ $real_estate_post->id }})">
+                        <!-- Button to trigger modal -->
+                        <a href="{{route('real-estate.edit', $real_estate_post->id)}}" class="btn btn-warning">
                             <i class="bi bi-pencil"></i>
-                        </button>
+                        </a>
+
 
                         <!-- Delete Button -->
                         <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -432,4 +434,16 @@
             toastr.success("Link copied to clipboard!");
         }
     </script>
+    <script>
+        document.addEventListener('livewire:load', function () {
+            window.addEventListener('modal-show', event => {
+                $('#' + event.detail.id).modal('show');
+            });
+    
+            window.addEventListener('modal-hide', event => {
+                $('#' + event.detail.id).modal('hide');
+            });
+        });
+    </script>
+    
 </div>

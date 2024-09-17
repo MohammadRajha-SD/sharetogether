@@ -12,14 +12,15 @@ class CountriesTableSeeder extends Seeder
      */
     public function run(): void
     {
+
         $countries = [
             ['name' => 'United States', 'code' => 'USA'],
-            ['name' => 'Canada', 'code' => 'CAN'],
-            ['name' => 'United Kingdom', 'code' => 'GBR'],
-            ['name' => 'Australia', 'code' => 'AUS'],
-            ['name' => 'Germany', 'code' => 'DEU'],
+            // ['name' => 'Canada', 'code' => 'CAN'],
+            // ['name' => 'United Kingdom', 'code' => 'GBR'],
+            // ['name' => 'Australia', 'code' => 'AUS'],
+            // ['name' => 'Germany', 'code' => 'DEU'],
         ];
-
+        DB::table('countries')->truncate();
         DB::table('countries')->insert($countries);
     }
 }

@@ -9,17 +9,12 @@ class Show extends Component
 {
     protected $listeners   = ['refresh'=> '$refresh'];
     public $real_estate_post;
+    public $formData = [];
 
     public function mount($id)
     {
-
         $this->real_estate_post = RealEstatePost::findOrFail($id);
-    }
-
-    // EDIT FUNCTION 
-    public function edit($id)
-    {
-        dd($id);
+        $this->formData = $this->real_estate_post->toArray();
     }
 
     // HIDE FUNCTION 
@@ -41,15 +36,8 @@ class Show extends Component
         return redirect()->route('real-estate.index')->with('status', 'Post deleted successfully.');
     }
 
-    // SHARE FUNCTION 
-    public function share($id)
-    {
-        dd($id);
-    }
-
     public function render()
     {
-        return view('livewire.real-estate.show')
-        ->extends('frontend.layouts.master');
+        return view('livewire.real-estate.show')->extends('frontend.layouts.master');
     }
 }

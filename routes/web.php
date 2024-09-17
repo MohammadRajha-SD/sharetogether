@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\SettingsController;
 use App\Livewire\Chats\Communities\Main as ChatCommunity;
 use App\Livewire\RealEstate\Main as RealEstateMain;
 use App\Livewire\RealEstate\Show as RealEstateShow;
+use App\Livewire\RealEstate\Edit as RealEstateEdit;
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
@@ -39,6 +40,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         // Real Estate Posts Routes
         Route::get('real-estates', RealEstateMain::class)->name('real-estate.index');
         Route::get('real-estates/{id}', RealEstateShow::class)->name('real-estate.show');
+        Route::get('real-estates/{id}/edit', RealEstateEdit::class)->name('real-estate.edit');
 
         Route::get('/communities/chat/{slug}', ChatCommunity::class)->name('community.chat');
     });
