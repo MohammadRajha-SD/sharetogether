@@ -83,4 +83,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Community::class, 'community_user');
     }
+
+    public function real_estate_posts(){
+        return $this->hasMany(RealEstatePost::class);
+    }
 }
