@@ -6,6 +6,22 @@ use Illuminate\Http\Request;
 
 trait ImageUploadTrait
 {
+
+    public function uploadImage2($image, $path)
+    {
+        // Generate a unique name for the image with its original extension
+        $ext = $image->getClientOriginalExtension();
+        $imageName = uniqid() . '.' . $ext;
+
+        // Store the image using the custom disk
+        $image->storeAs($path, $imageName, 'public_uploads');
+
+        // Return the path of the uploaded image
+        return $path . '/' . $imageName;
+    }
+
+
+
     public function uploadImage(Request $request, $inputName, $path)
     {
         if ($request->hasFile($inputName)) {

@@ -7,32 +7,40 @@ use Livewire\WithFileUploads;
 use App\Models\RealEstatePost;
 use App\Models\State;
 use App\Models\City;
-
+use App\Traits\ImageUploadTrait;
 class Edit extends Component
 {
     use WithFileUploads;
-
+    use ImageUploadTrait;
     public $realEstatePost;
     public $title, $description, $price, $bedrooms, $bathrooms, $sqft, $acre_lot, $address, $state, $city, $property_type, $listing_type, $garage, $year_built;
     public $exterior_image, $kitchen_image, $bathroom_image;
     public $states;
     public $cities;
+    public $listing_types;
+    public $property_types;
+
+    public $images = [];
 
     public function mount($id)
     {
         $this->realEstatePost = RealEstatePost::findOrFail($id);
         $this->fill($this->realEstatePost->toArray());
         $this->states = State::where('country_id', auth()->user()->details->country_id)->get();
-        $this->cities = City::where('state_id', $this->state)->get(); 
+        $this->cities = City::where('state_id', $this->state)->get();
 
         $this->state = $this->realEstatePost->state;
         $this->city = $this->realEstatePost->city;
+
+
+        $this->listing_types = ['rent', 'sale'];
+        $this->property_types = ['house', 'condo', 'townhome', 'multi family', 'mobile', 'farm', 'land'];
     }
 
     public function updatedState()
     {
         $this->cities = City::where('state_id', $this->state)->get();
-        $this->city = null; 
+        $this->city = null;
     }
 
     public function update()
@@ -48,9 +56,9 @@ class Edit extends Component
             'address' => 'required|string',
             'state' => 'required|exists:states,id',
             'city' => 'required|exists:cities,id',
-            'property_type' => 'required|string',
+            'property_type' => 'required|in:house,condo,townhome,multi family,mobile,farm,land',
             'listing_type' => 'required|in:rent,sale',
-            'garage' => 'nullable|string',
+            'garage' => 'nullable|numeric',
             'year_built' => 'nullable|numeric',
             'exterior_image' => 'nullable|image|max:1024',
             'kitchen_image' => 'nullable|image|max:1024',
@@ -59,13 +67,25 @@ class Edit extends Component
 
         // Handle file uploads
         if ($this->exterior_image) {
-            $this->realEstatePost->exterior_image_url = $this->exterior_image->store('uploads', 'public');
+            $imagePath = $this->uploadImage2($this->exterior_image, 'uploads');
+            $this->deleteImage($this->realEstatePost->exterior_image_url);
+            $this->realEstatePost->update([
+                'exterior_image_url' => 'uploads/' . $imagePath,
+            ]);
         }
         if ($this->kitchen_image) {
-            $this->realEstatePost->kitchen_image_url = $this->kitchen_image->store('uploads', 'public');
+            $imagePath = $this->uploadImage2($this->kitchen_image, 'uploads');
+            $this->deleteImage($this->realEstatePost->kitchen_image_url);
+            $this->realEstatePost->update([
+                'kitchen_image_url' => 'uploads/' . $imagePath,
+            ]);
         }
         if ($this->bathroom_image) {
-            $this->realEstatePost->bathroom_image_url = $this->bathroom_image->store('uploads', 'public');
+            $imagePath = $this->uploadImage2($this->bathroom_image, 'uploads');
+            $this->deleteImage($this->realEstatePost->bathroom_image_url);
+            $this->realEstatePost->update([
+                'bathroom_image_url' => 'uploads/' . $imagePath,
+            ]);
         }
 
         // Save the changes
@@ -78,15 +98,33 @@ class Edit extends Component
             'sqft' => $this->sqft,
             'acre_lot' => $this->acre_lot,
             'address' => $this->address,
-            'state_id' => $this->state,
-            'city_id' => $this->city,
+            'state' => $this->state,
+            'city' => $this->city,
             'property_type' => $this->property_type,
             'listing_type' => $this->listing_type,
             'garage' => $this->garage,
             'year_built' => $this->year_built,
         ]);
 
+
+        if ($this->images) {
+            foreach ($this->accident->images as $image) {
+                $this->deleteImage($image->path);
+                $image->delete();
+            }
+
+            /* Update Images to the database */
+            foreach ($this->images as $image) {
+                $imagePath = $this->uploadImage2($image, '');
+                $this->accident->images()->create([
+                    'path' => 'uploads' . $imagePath,
+                ]);
+            }
+        }
+
+
         session()->flash('status', 'Real estate post updated successfully.');
+
         return redirect()->route('real-estate.index');
     }
 
