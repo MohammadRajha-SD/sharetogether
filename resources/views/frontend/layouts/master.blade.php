@@ -18,11 +18,6 @@
 <body>
     @include('frontend.layouts.main-header')
 
-    @if (!view()->yieldContent('is_community_page'))
-        @if (request()->is('real-estate*'))
-            @include('frontend.real-estate.header')
-        @endif
-    @endif
 
     @yield('content')
 

@@ -1,31 +1,26 @@
 <div>
     <div class="dropdown">
         <button class="btn-filter dropdown-toggle" type="button" id="dropdownMenuButtonPrice" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" wire:click="toggleShow">
+            aria-haspopup="true" aria-expanded="false" wire:click="toggleShow">
             {{ $price > 0 ? $price : 'Price' }}
         </button>
 
-        <div class="dropdown-menu dropdown-menu-custom {{$is_show ? 'show' : ''}}"
-             aria-labelledby="dropdownMenuButtonPrice">
+        <div class="dropdown-menu dropdown-menu-custom {{ $is_show ? 'show' : '' }}"
+            aria-labelledby="dropdownMenuButtonPrice">
             <button class="btn-filter dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" wire:click="toggleShow">
+                aria-haspopup="true" aria-expanded="false" wire:click="toggleShow">
                 Price
             </button>
 
-            <div class="dropdown-menu dropdown-menu-custom {{$is_show ? 'show' : ''}}"
-                 aria-labelledby="dropdownMenuButton">
-                <div class="d-flex justify-content-between mb-3">
-                    <span>Price</span>
-                    <a href="#" wire:click.prevent="submit" class="text-primary">Done</a>
-                </div>
+            <div class="dropdown-menu dropdown-menu-custom {{ $is_show ? 'show' : '' }}"
+                aria-labelledby="dropdownMenuButton">
                 <div class="row">
                     <div class="col-12">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input type="number" class="form-control" min="0" wire:model.live="min_price"
-                                   placeholder="No min"/>
+                            <input type="number" class="form-control" min="0" wire:model.live="min_price" placeholder="No min" />
                         </div>
                     </div>
 
@@ -34,23 +29,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input type="number"
-                                   class="form-control {{ $is_valid === false ? 'border-danger' : '' }}"
-                                   min="{{ $min_price }}"
-                                   wire:model.defer="max_price"
-                                   placeholder="No max"
-                                   wire:change.debounce="validateMaxPrice"/>
+                            <input type="number" class="form-control {{ $is_valid === false ? 'border-danger' : '' }}"
+                                min="{{ $min_price }}" wire:model.defer="max_price" placeholder="No max"
+                                wire:change.debounce="validateMaxPrice" />
 
-                        </div>
-                        <div class="form-group">
-                            <label for="custom-select">Choose an option or enter your own:</label>
-                            <select class="custom-select" id="custom-select">
-                                <option value="">Select an option...</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
-                            <input type="text" class="form-control" id="custom-input" style="display: none;">
                         </div>
                     </div>
                 </div>
@@ -58,7 +40,7 @@
             <style>
                 .dropdown-menu-custom {
                     padding: 20px;
-                    width: 300px; /* Custom width */
+                    width: 300px;
                 }
 
                 .btn-filter {
