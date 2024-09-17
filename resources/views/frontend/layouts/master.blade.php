@@ -16,15 +16,15 @@
 </head>
 
 <body>
-    @include('frontend.layouts.main-header')
-
+    @include('frontend.layouts.navbar')
 
     @yield('content')
 
-	@include('frontend.layouts.footer-scripts')
+    @include('frontend.layouts.footer-scripts')
 
     @livewireScripts
-    
+
     <x-frontend.flash />
 </body>
+
 </html>

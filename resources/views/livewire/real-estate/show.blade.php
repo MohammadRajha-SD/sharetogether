@@ -1,6 +1,4 @@
-@extends('frontend.layouts.master')
-
-@section('content')
+<div>
     <style>
         .main-image img,
         .side-images img {
@@ -109,7 +107,7 @@
         <div class="row ">
             <div class="col-12 d-flex">
                 <div>
-                    <a class="btn btn-primary" href="{{route('real-estate.index')}}">
+                    <a class="btn btn-primary" href="{{ route('real-estate.index') }}">
                         <i class="bi bi-arrow-left text-white"></i>
                     </a>
                 </div>
@@ -206,8 +204,8 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="row">
                                 <div class="col-2 py-1 px-2 text-center">
-                                    <svg fill="currentColor" data-testid="icon-home" viewBox="0 0 24 24" aria-hidden="true"
-                                        focusable="false"
+                                    <svg fill="currentColor" data-testid="icon-home" viewBox="0 0 24 24"
+                                        aria-hidden="true" focusable="false"
                                         style="display: inline-block; width: 1em; height: 1em; font-size: 24px; color: inherit; fill: currentcolor;">
                                         <path
                                             d="m20.499 7.799-5.375-4.3a5 5 0 0 0-6.247 0L3.5 7.799A4 4 0 0 0 2 10.922V18a4 4 0 0 0 4 4h2a2 2 0 0 0 2-2v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a2 2 0 0 0 2 2h2a4 4 0 0 0 4-4v-7.078A4 4 0 0 0 20.499 7.8ZM4.75 9.361l5.375-4.3a3 3 0 0 1 3.748 0l5.375 4.3A2 2 0 0 1 20 10.922V18a2 2 0 0 1-2 2h-2v-3a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v3H6a2 2 0 0 1-2-2v-7.078a2 2 0 0 1 .75-1.561Z"
@@ -231,7 +229,8 @@
                                     </svg>
                                 </div>
                                 <div class="col-10 ">
-                                    <p class="m-0">{{ round($real_estate_post->price / $real_estate_post->sqft, 0) }}
+                                    <p class="m-0">
+                                        {{ round($real_estate_post->price / $real_estate_post->sqft, 0) }}
                                     </p>
                                     <small>Price per sqft</small>
                                 </div>
@@ -301,9 +300,4 @@
             {{--        </div> --}}
         </div>
     </div>
-
-@endsection
-@section('js')
-    <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-@endsection
+</div>

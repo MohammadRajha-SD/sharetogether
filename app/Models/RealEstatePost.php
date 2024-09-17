@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class RealEstatePost extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = [];
 
-    public function image(){
-        return $this->morphOne(Image::class,'imageable');
+    // image posts
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 
     public function images()
@@ -20,4 +22,14 @@ class RealEstatePost extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    // POST SAVES
+    public function saves()
+    {
+        return $this->hasMany(RealEstateSave::class);
+    }
+
+    public function isSavedByUser($userId)
+    {
+        return $this->saves()->where('user_id', $userId)->exists();
+    }
 }
