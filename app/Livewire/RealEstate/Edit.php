@@ -12,6 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
     use ImageUploadTrait;
+
     public $realEstatePost;
     public $title, $description, $price, $bedrooms, $bathrooms, $sqft, $acre_lot, $address, $state, $city, $property_type, $listing_type, $garage, $year_built;
     public $exterior_image, $kitchen_image, $bathroom_image;
@@ -21,6 +22,8 @@ class Edit extends Component
     public $property_types;
 
     public $images = [];
+    public $current_images;
+
 
     public function mount($id)
     {
@@ -35,6 +38,8 @@ class Edit extends Component
 
         $this->listing_types = ['rent', 'sale'];
         $this->property_types = ['house', 'condo', 'townhome', 'multi family', 'mobile', 'farm', 'land'];
+
+        $this->current_images = $this->realEstatePost->images ?? [];
     }
 
     public function updatedState()
@@ -67,21 +72,21 @@ class Edit extends Component
 
         // Handle file uploads
         if ($this->exterior_image) {
-            $imagePath = $this->uploadImage2($this->exterior_image, 'uploads');
+            $imagePath = $this->uploadImage2($this->exterior_image, '');
             $this->deleteImage($this->realEstatePost->exterior_image_url);
             $this->realEstatePost->update([
                 'exterior_image_url' => 'uploads/' . $imagePath,
             ]);
         }
         if ($this->kitchen_image) {
-            $imagePath = $this->uploadImage2($this->kitchen_image, 'uploads');
+            $imagePath = $this->uploadImage2($this->kitchen_image, '');
             $this->deleteImage($this->realEstatePost->kitchen_image_url);
             $this->realEstatePost->update([
                 'kitchen_image_url' => 'uploads/' . $imagePath,
             ]);
         }
         if ($this->bathroom_image) {
-            $imagePath = $this->uploadImage2($this->bathroom_image, 'uploads');
+            $imagePath = $this->uploadImage2($this->bathroom_image, '');
             $this->deleteImage($this->realEstatePost->bathroom_image_url);
             $this->realEstatePost->update([
                 'bathroom_image_url' => 'uploads/' . $imagePath,
@@ -108,7 +113,7 @@ class Edit extends Component
 
 
         if ($this->images) {
-            foreach ($this->accident->images as $image) {
+            foreach ($this->realEstatePost->images as $image) {
                 $this->deleteImage($image->path);
                 $image->delete();
             }
@@ -116,16 +121,15 @@ class Edit extends Component
             /* Update Images to the database */
             foreach ($this->images as $image) {
                 $imagePath = $this->uploadImage2($image, '');
-                $this->accident->images()->create([
+                $this->realEstatePost->images()->create([
                     'path' => 'uploads' . $imagePath,
                 ]);
             }
         }
 
-
         session()->flash('status', 'Real estate post updated successfully.');
 
-        return redirect()->route('real-estate.index');
+        return redirect()->route('real-estate.show', $this->realEstatePost->id);
     }
 
     public function render()

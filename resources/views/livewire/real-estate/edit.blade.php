@@ -180,7 +180,6 @@
             </div>
         </div>
 
-
         {{-- 3 IMAGES  --}}
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
@@ -275,26 +274,23 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group mb-3">
-                <label for="images">Images</label>
-                <input type="file" wire:model="newImages" multiple class="form-control" />
-                @error('newImages.*')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-                <div class="mt-3">
-                    <ul class="list-group">
-                        @foreach ($realEstatePost->images as $image)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <img src="{{ asset($image->path) }}" width="100" alt="Image" />
-                                <button type="button" wire:click="deleteImage({{ $image->id }})"
-                                    class="btn btn-danger btn-sm">Delete</button>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+        <div class="form-group">
+            <label for="images">Pictures of {{ucwords($realEstatePost->property_type)}}</label>
+            <input type="file" accept="image/*" multiple wire:model="images" id="images"  class="form-control"  name="images[]"/>
         </div>
+        
+        <div class="mt-2 card d-flex flex-row ">
+            @if($images)
+                @foreach ($images as $image)
+                    <img src="{{ $image->temporaryUrl() }}" width="200" height="150" class="mr-2" />
+                @endforeach
+            @elseif($current_images)
+                @foreach ($current_images as $image_)
+                    <img src="{{ asset($image_->path)  }}" width="200" height="150" class="mr-2" />
+                @endforeach
+            @endif
+        </div>
+
         <button type="submit" class="btn btn-primary mb-4 mt-2">Update Real Estate Post</button>
     </form>
 </div>
