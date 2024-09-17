@@ -1,9 +1,9 @@
 <div class="container card pt-3" style="margin-top: 70px; ">
     <div class="card-header d-flex border-bottom px-0">
-            <a class="btn btn-primary" href="{{ route('real-estate.show', $realEstatePost->id) }}">
-                <i class="bi bi-arrow-left text-white"></i>
-            </a>
-        <h3 class="text-danger px-2">Edit Real Estate Post</h3>
+        <a class="btn btn-primary" href="{{ url()->previous() }}">
+            <i class="bi bi-arrow-left text-white"></i>
+        </a>
+        <h3 class="text-danger px-2">Create Real Estate Post</h3>
     </div>
     <style>
         .card-image {
@@ -197,12 +197,7 @@
                     </div>
                     <div class="card-body pt-0">
                         @if ($exterior_image)
-                            <img src="{{ $exterior_image->temporaryUrl() }}" class="img-thumbnail mt-2  card-image"
-                                width="150" />
-                        @elseif ($realEstatePost->exterior_image_url)
-                            <img src="{{ asset($realEstatePost->exterior_image_url) }}"
-                                class="img-thumbnail mt-2  card-image" width="150" />
-                        @else
+                            <img src="{{ $exterior_image->temporaryUrl() }}" class="img-thumbnail mt-2  card-image" width="150" />
                         @endif
                     </div>
                     <div class="card-footer">
@@ -229,9 +224,6 @@
                     <div class="card-body pt-0">
                         @if ($kitchen_image)
                             <img src="{{ $kitchen_image->temporaryUrl() }}" class="img-thumbnail mt-2  card-image" />
-                        @elseif ($realEstatePost->kitchen_image_url)
-                            <img src="{{ asset($realEstatePost->kitchen_image_url) }}"
-                                class="img-thumbnail mt-2  card-image" width="150" />
                         @endif
                     </div>
                     <div class="card-footer">
@@ -259,9 +251,6 @@
                         @if ($bathroom_image)
                             <img src="{{ $bathroom_image->temporaryUrl() }}" class="img-thumbnail mt-2  card-image"
                                 width="150" />
-                        @elseif ($realEstatePost->bathroom_image_url)
-                            <img src="{{ asset($realEstatePost->bathroom_image_url) }}"
-                                class="img-thumbnail mt-2 card-image" />
                         @endif
                     </div>
                     <div class="card-footer">
@@ -279,18 +268,15 @@
         </div>
 
         <div class="form-group">
-            <label for="images">Pictures of {{ucwords($realEstatePost->property_type)}}</label>
-            <input type="file" accept="image/*" multiple wire:model="images" id="images"  class="form-control"  name="images[]"/>
+            <label for="images">Pictures </label>
+            <input type="file" accept="image/*" multiple wire:model="images" id="images" class="form-control"
+                name="images[]" />
         </div>
-        
+
         <div class="mt-2 card d-flex flex-row ">
-            @if($images)
+            @if ($images)
                 @foreach ($images as $image)
                     <img src="{{ $image->temporaryUrl() }}" width="200" height="150" class="mr-2" />
-                @endforeach
-            @elseif($current_images)
-                @foreach ($current_images as $image_)
-                    <img src="{{ asset($image_->path)  }}" width="200" height="150" class="mr-2" />
                 @endforeach
             @endif
         </div>

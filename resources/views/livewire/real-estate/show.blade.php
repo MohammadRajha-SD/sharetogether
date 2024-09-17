@@ -116,14 +116,18 @@
                         </a>
                     </div>
                     <div class="mx-2">
-                        <p class="text-muted mb-1"><strong>Listed by</strong> {{ucwords(auth()->user()->name)}}</p>
+                        <p class="text-muted mb-1"><strong>Listed by</strong> {{ ucwords(auth()->user()->name) }}</p>
                         <p class="text-muted"><strong>Brokered by</strong> Keller Williams Realty Partners, Inc</p>
                     </div>
                 </div>
-                @if (Auth::check() && Auth::id() === $real_estate_post->user_id)
-                    <div>
-                        <!-- Button to trigger modal -->
-                        <a href="{{route('real-estate.edit', $real_estate_post->id)}}" class="btn btn-warning">
+                <div>
+
+                    @if (Auth::check() && Auth::id() === $real_estate_post->user_id)
+                        <a href="{{ route('real-estate.create') }}" class="btn btn-primary">
+                            <i class="bi bi-plus"></i>
+                        </a>
+
+                        <a href="{{ route('real-estate.edit', $real_estate_post->id) }}" class="btn btn-warning">
                             <i class="bi bi-pencil"></i>
                         </a>
 
@@ -194,42 +198,40 @@
                                 </div>
                             </div>
                         </div>
+                    @endif
+                    <button class="btn btn-info" data-toggle="modal" data-target="#shareModal">
+                        <i class="bi bi-share"></i>
+                    </button>
 
-                        <button class="btn btn-info" data-toggle="modal" data-target="#shareModal">
-                            <i class="bi bi-share"></i>
-                        </button>
-
-                        <div class="modal fade" id="shareModal" tabindex="-1" role="dialog"
-                            aria-labelledby="shareModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="shareModalLabel">Share Post</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Link Display -->
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="shareLink"
-                                                value="{{ route('real-estate.show', $real_estate_post->id) }}"
-                                                readonly>
-                                            <div class="input-group-append">
-                                                <button class="btn btn-success" type="button"
-                                                    onclick="copyToClipboard()">Copy</button>
-                                            </div>
+                    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog"
+                        aria-labelledby="shareModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="shareModalLabel">Share Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Link Display -->
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="shareLink"
+                                            value="{{ route('real-estate.show', $real_estate_post->id) }}" readonly>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="button"
+                                                onclick="copyToClipboard()">Copy</button>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" id="shareCloseBtn"
-                                            data-dismiss="modal">Close</button>
-                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" id="shareCloseBtn"
+                                        data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endif
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="carousel slide " data-ride="carousel" id="carouselExample2">
@@ -318,8 +320,8 @@
                         @endif
                     </p>
 
-                    <p class="text-muted">{{ $real_estate_post->address }}, {{ $real_estate_post->city }}
-                        , {{ $real_estate_post->state }} {{ $real_estate_post->zip_code }}</p>
+                    <p class="text-muted">{{ $real_estate_post->address }}, {{ $real_estate_post->city_name->name }}
+                        , {{ $real_estate_post->state_name->name }} </p>
 
                     @if ($real_estate_post->listing_type !== 'rent')
                         <div class="d-flex align-items-center justify-content-between">
@@ -435,15 +437,15 @@
         }
     </script>
     <script>
-        document.addEventListener('livewire:load', function () {
+        document.addEventListener('livewire:load', function() {
             window.addEventListener('modal-show', event => {
                 $('#' + event.detail.id).modal('show');
             });
-    
+
             window.addEventListener('modal-hide', event => {
                 $('#' + event.detail.id).modal('hide');
             });
         });
     </script>
-    
+
 </div>

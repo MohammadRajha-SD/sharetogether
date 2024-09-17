@@ -122,8 +122,7 @@
                             @endif
                         </p>
 
-                        <p class="text-muted">{{ $post->address }}, {{ $post->city }},
-                            , {{ $post->state }} {{ $post->zip_code }}</p>
+                        <p class="text-muted">{{ $post->address }}, {{ ucwords($post->city_name->name) }}, {{ ucwords($post->state_name->name) }}</p>
                         <button class="btn-email-agent">Email Agent</button>
                     </div>
                 </a>

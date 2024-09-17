@@ -33,8 +33,12 @@ class RealEstatePost extends Model
         return $this->saves()->where('user_id', $userId)->exists();
     }
 
-    // Optionally, define the default value for visibility
-    protected $attributes = [
-        'visibility' => 1, // Public by default
-    ];
+
+    public function state_name(){
+        return $this->belongsTo(State::class, 'state');
+    }
+
+    public function city_name(){
+        return $this->belongsTo(City::class, 'city');
+    }
 }
