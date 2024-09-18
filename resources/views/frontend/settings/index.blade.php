@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('is_navbar_hided', true)
 @section('content')
-    <div class="container mt-4">
+    <div style="margin-top: 70px;" class="container-fluid">
         <div class="card">
             <div class="card-header bg-primary text-white">
                 <h4>Settings</h4>

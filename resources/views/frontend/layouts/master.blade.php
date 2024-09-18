@@ -16,16 +16,18 @@
 </head>
 
 <body>
-	<!-- Loader -->
+    <!-- Loader -->
     <div id="global-loader">
         <img src="{{asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
     </div>
     <!-- /Loader -->
 
+    @if (!view()->yieldContent('is_navbar_hided'))
+        @include('frontend.layouts.navbar')
+    @endif
 
-
-    @include('frontend.layouts.navbar')
-            @yield('content')
+    @yield('content')
+    
     @include('frontend.layouts.footer-scripts')
 
     @livewireScripts
