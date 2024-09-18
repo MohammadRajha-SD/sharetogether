@@ -66,7 +66,7 @@ return [
 
     'categories' => [
         [
-            'id' => 1,
+            'id' => 0,
             'name' => 'Exchange Market',
             'slug' => 'exchange-market',
             'icon' => 'fa-exchange-alt',
@@ -427,7 +427,7 @@ return [
             ],
         ],
         [
-            'id' => 2,
+            'id' => 1,
             'name' => 'Community',
             'slug' => 'community',
             'icon' => 'bi-people',
@@ -1852,7 +1852,7 @@ return [
             ],
         ],
         [
-            'id' => 3,
+            'id' => 2,
             'name' => 'Farm Products',
             'slug' => 'farm-products',
             'icon' => 'bi-truck',
@@ -1880,7 +1880,7 @@ return [
             ]
         ],
         [
-            'id' => 4,
+            'id' => 3,
             'name' => 'Business',
             'slug' => 'business',
             'icon' => 'bi-briefcase',
@@ -2065,7 +2065,8 @@ return [
             ]
         ],
         [
-            'id' => 5,
+            'id' => 4
+            ,
             'name' => 'Garage Sale',
             'slug' => 'garage-sale',
             'icon' => 'bi-cart',
