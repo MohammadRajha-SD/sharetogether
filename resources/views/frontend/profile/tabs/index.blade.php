@@ -40,7 +40,7 @@
             </div>
 
             <div class="tab-pane active" id="real-estate" >
-                @include('frontend.profile.tabs.real-estate')
+                @livewire('real-estate.my-real-estate-posts')
             </div>
         </div>
     </div>

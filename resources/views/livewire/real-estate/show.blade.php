@@ -199,6 +199,7 @@
                             </div>
                         </div>
                     @endif
+                    
                     <button class="btn btn-info" data-toggle="modal" data-target="#shareModal">
                         <i class="bi bi-share"></i>
                     </button>

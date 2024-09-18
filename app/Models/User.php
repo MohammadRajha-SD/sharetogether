@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -86,5 +87,10 @@ class User extends Authenticatable
 
     public function real_estate_posts(){
         return $this->hasMany(RealEstatePost::class);
+    }
+
+    public function favorite_real_estate_posts()
+    {
+        return $this->belongsToMany(RealEstatePost::class, 'real_estate_saves', 'user_id', 'real_estate_post_id');
     }
 }
