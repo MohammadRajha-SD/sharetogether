@@ -58,3 +58,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/get-cities/{state_id}', [LocationController::class, 'getCities']);
 });
 
+
+//Please make sure People can buy and exchange both

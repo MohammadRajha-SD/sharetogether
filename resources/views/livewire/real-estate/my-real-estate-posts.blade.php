@@ -17,15 +17,18 @@
             transition: .3s;
             color: white;
         }
+        .btn-active{
+            opacity: 0.5;
+        }
     </style>
 
     <div class="col-12 d-flex align-items-center justify-content-end">
-        <a class="btn btn-primary mb-3 text-white mr-2 active {{$is_favorite === false ? 'active' : ''}}" data-bs-toggle="tooltip" title="My Real Estate Posts"
+        <a class="btn btn-primary mb-3 text-white mr-2 {{$is_favorite === false ? 'btn-active' : ''}}" data-bs-toggle="tooltip" title="My Real Estate Posts"
             wire:click="load_my_real_estate_posts">
             <i class="bi bi-journal-text"></i>
         </a>
 
-        <a class="btn btn-warning mb-3 text-white  {{$is_favorite === true ? 'active' : ''}}" data-bs-toggle="tooltip" title="Favorite Real Estate Posts"
+        <a class="btn btn-warning mb-3 text-white  {{$is_favorite === true ? 'btn-active' : ''}}" data-bs-toggle="tooltip" title="Favorite Real Estate Posts"
             wire:click='load_favorite_real_estate_posts'>
             <i class="bi bi-star-fill"></i>
         </a>
@@ -79,7 +82,6 @@
         <p class="text-center text-muted"> {{$is_favorite === true ? 'You have no favorite real estate posts.' : 'You have no real estate posts.'}} </p>
     </div>
     @endforelse
-</div>
 
 <!-- Add this script to initialize tooltips -->
 <script>
@@ -90,3 +92,4 @@
         });
     });
 </script>
+</div>
