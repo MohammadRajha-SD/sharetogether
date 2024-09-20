@@ -80,7 +80,6 @@ class Index extends Component
         'ChangedHealthingCooling',
         'ChangedLotViews',
         'ChangedSquareFeet',
-        'refresh' => '$refresh'
     ];
 
     /* Listeners */
@@ -133,9 +132,8 @@ class Index extends Component
 
     public function ChangedGarage($garage): void
     {
-        $this->garage = $garage;
+        $this->garage = is_numeric($garage) && $garage >= 0 ? $garage : null;
         $this->resetPage();
-        $this->dispatch('refresh');
     }
 
     public function ChangedParking(array $data): void
@@ -173,64 +171,59 @@ class Index extends Component
     {
         // Property type
         $query->when($this->property_type, fn($q) => $q->where('property_type', $this->property_type));
-
+    
         // Price range
         $query->when($this->min, fn($q) => $q->where('price', '>=', $this->min))
-            ->when($this->max, fn($q) => $q->where('price', '<=', $this->max));
-
+              ->when($this->max, fn($q) => $q->where('price', '<=', $this->max));
+    
         // Bedrooms and bathrooms
         $query->when($this->min_bed, fn($q) => $q->where('bedrooms', '>=', $this->min_bed))
-            ->when($this->max_bed, fn($q) => $q->where('bedrooms', '<=', $this->max_bed))
-            ->when($this->min_bath, fn($q) => $q->where('bathrooms', '>=', $this->min_bath))
-            ->when($this->max_bath, fn($q) => $q->where('bathrooms', '<=', $this->max_bath));
-
+              ->when($this->max_bed, fn($q) => $q->where('bedrooms', '<=', $this->max_bed))
+              ->when($this->min_bath, fn($q) => $q->where('bathrooms', '>=', $this->min_bath))
+              ->when($this->max_bath, fn($q) => $q->where('bathrooms', '<=', $this->max_bath));
+    
         // Search
         if ($this->search) {
             $searchTerms = explode(',', $this->search);
             $city = $searchTerms[0] ?? null;
             $state = $searchTerms[1] ?? null;
             $query->when($city, fn($q) => $q->where('city', 'like', "%$city%"))
-                ->when($state, fn($q) => $q->where('state', 'like', "%$state%"));
+                  ->when($state, fn($q) => $q->where('state', 'like', "%$state%"));
         }
-
+    
         // Keywords
         $query->when($this->keywords, fn($q) => $q->where(function ($subQuery) {
             foreach ($this->keywords as $keyword) {
                 $subQuery->orWhere('description', 'LIKE', "%$keyword%")
-                    ->orWhere('title', 'LIKE', "%$keyword%");
+                         ->orWhere('title', 'LIKE', "%$keyword%");
             }
         }));
-
+    
         // Story, home age, garage, and square feet
         $query->when($this->story, fn($q) => $q->where('story', $this->story))
-            ->when($this->daysOn, fn($q) => $q->where('updated_at', '>=', Carbon::now()->subDays($this->daysOn)))
-            ->when($this->min_home_age, fn($q) => $q->where('year_built', '>=', $this->min_home_age))
-            ->when($this->max_home_age, fn($q) => $q->where('year_built', '<=', $this->max_home_age))
-            ->when($this->garage, fn($q) => $q->where('garage', '>=', (int)$this->garage))
-            ->when($this->min_sqft, fn($q) => $q->where('sqft', '>=', $this->min_sqft))
-            ->when($this->max_sqft, fn($q) => $q->where('sqft', '<=', $this->max_sqft));
-
+              ->when($this->daysOn, fn($q) => $q->where('updated_at', '>=', Carbon::now()->subDays($this->daysOn)))
+              ->when($this->min_home_age, fn($q) => $q->where('year_built', '>=', $this->min_home_age))
+              ->when($this->max_home_age, fn($q) => $q->where('year_built', '<=', $this->max_home_age))
+              ->when($this->garage, fn($q) => $q->where('garage', '>=', (int)$this->garage))
+              ->when($this->min_sqft, fn($q) => $q->where('sqft', '>=', $this->min_sqft))
+              ->when($this->max_sqft, fn($q) => $q->where('sqft', '<=', $this->max_sqft));
+    
         // Lot views, parking, heating & cooling
         foreach ($this->lot_views as $view => $value) {
             $query->when($value, fn($q) => $q->where("has_$view", $value));
         }
-
+    
         $query->when($this->rv_boat_parking, fn($q) => $q->where('has_rv_boat_parking', $this->rv_boat_parking))
-            ->when($this->carport, fn($q) => $q->where('has_carport', $this->carport))
-            ->when($this->central_air, fn($q) => $q->where('has_central_air', $this->central_air))
-            ->when($this->central_heat, fn($q) => $q->where('has_central_heat', $this->central_heat))
-            ->when($this->forced_air, fn($q) => $q->where('has_forced_air', $this->forced_air));
+              ->when($this->carport, fn($q) => $q->where('has_carport', $this->carport))
+              ->when($this->central_air, fn($q) => $q->where('has_central_air', $this->central_air))
+              ->when($this->central_heat, fn($q) => $q->where('has_central_heat', $this->central_heat))
+              ->when($this->forced_air, fn($q) => $q->where('has_forced_air', $this->forced_air));
     }
-
+    
     public function render()
     {
         $query = RealEstatePost::query()->where('visibility', 1);
-        
-        // $this->applyFilters($query);
-        if ($this->garage !== null) {
-            $query->where('garage', '>=', $this->garage);
-        }
-
+        $this->applyFilters($query);
         $real_estate_posts = $query->paginate($this->limit);
 
         return view('livewire.real-estate.index', compact('real_estate_posts'));

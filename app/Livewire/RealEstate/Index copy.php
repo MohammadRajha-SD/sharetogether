@@ -80,7 +80,6 @@ class Index extends Component
         'ChangedHealthingCooling',
         'ChangedLotViews',
         'ChangedSquareFeet',
-        'refresh' => '$refresh'
     ];
 
     /* Listeners */
@@ -133,9 +132,8 @@ class Index extends Component
 
     public function ChangedGarage($garage): void
     {
-        $this->garage = $garage;
+        $this->garage = is_numeric($garage) && $garage >= 0 ? $garage : null;
         $this->resetPage();
-        $this->dispatch('refresh');
     }
 
     public function ChangedParking(array $data): void
@@ -225,14 +223,15 @@ class Index extends Component
     public function render()
     {
         $query = RealEstatePost::query()->where('visibility', 1);
-        
+
         // $this->applyFilters($query);
         if ($this->garage !== null) {
-            $query->where('garage', '>=', $this->garage);
+            $query->where('garage', '>=', (int)$this->garage);
         }
 
         $real_estate_posts = $query->paginate($this->limit);
 
+        dd($real_estate_posts);
         return view('livewire.real-estate.index', compact('real_estate_posts'));
     }
 }

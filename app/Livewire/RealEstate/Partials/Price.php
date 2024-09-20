@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\RealEstate;
+namespace App\Livewire\RealEstate\Partials;
 
 use Livewire\Component;
 
@@ -14,7 +14,6 @@ class Price extends Component
 
     public function validateMaxPrice()
     {
-
         if ($this->max_price !== null && $this->min_price >= $this->max_price) {
             $this->is_valid = false;
         } else {
@@ -58,6 +57,6 @@ class Price extends Component
 
     public function render()
     {
-        return view('livewire.real-estate.price');
+        return view('livewire.real-estate.partials.price');
     }
 }

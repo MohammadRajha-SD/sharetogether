@@ -7,7 +7,7 @@
         <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     @endsection
 
-    @livewire('real-estate.index')
+    @livewire('real-estate.index', key('real_estate_main'))
 
     @section('js')
         <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>

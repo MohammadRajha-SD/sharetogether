@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('state');
             $table->integer('city');
             $table->string('property_type');
-            $table->enum('listing_type', ['rent', 'sale']); // Rent or Sale
-            $table->string('garage')->nullable();
+            $table->enum('listing_type', ['rent', 'sale', 'buy']); // Rent or Sale
+            $table->integer('garage')->default(0);
             $table->integer('year_built')->nullable(); // Year built added
 
 

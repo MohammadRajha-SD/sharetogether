@@ -62,14 +62,7 @@ $main_categories = config('categories')['main-categories'];
         </div>
 
         @if (request()->is('real-estate*'))
-        <nav class="horizontalMenu clearfix">
-            <div class="horizontalMenu-list d-flex align-items-center justify-content-center my-3" style="gap:5px">
-                @livewire('real-estate.search')
-                @livewire('real-estate.price')
-                @livewire('real-estate.property-type')
-                @livewire('real-estate.rooms')
-            </div>
-        </nav>
+            @livewire('real-estate.header', key('real_estate_header_'))
         @else
         <ul class="d-flex align-items-center mt-2" id="navbar-categories">
             @foreach ($main_categories as $main_category)

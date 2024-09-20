@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\RealEstate;
+namespace App\Livewire\RealEstate\Partials;
 
 use Livewire\Component;
 
@@ -26,6 +26,6 @@ class PropertyType extends Component
 
     public function render()
     {
-        return view('livewire.real-estate.property-type');
+        return view('livewire.real-estate.partials.property-type');
     }
 }

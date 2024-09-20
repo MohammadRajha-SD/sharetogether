@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\RealEstate;
+namespace App\Livewire\RealEstate\Partials;
 
 use Livewire\Component;
 
@@ -16,6 +16,6 @@ class Search extends Component
     public function render()
     {
 
-        return view('livewire.real-estate.search');
+        return view('livewire.real-estate.partials.search');
     }
 }

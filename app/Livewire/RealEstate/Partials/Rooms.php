@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\RealEstate;
+namespace App\Livewire\RealEstate\Partials;
 
 use Livewire\Component;
 
@@ -68,6 +68,6 @@ class Rooms extends Component
         $max_beds = range($start_beds,5);
         $max_baths = range($start_baths,5);
 
-        return view('livewire.real-estate.rooms', compact('max_beds', 'max_baths'));
+        return view('livewire.real-estate.partials.rooms', compact('max_beds', 'max_baths'));
     }
 }

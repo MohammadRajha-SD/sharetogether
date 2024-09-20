@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('realEstatePosts', function (Blueprint $table) {
+        Schema::table('real_estate_posts', function (Blueprint $table) {
             $table->dropColumn('visibility');
         });
     }
