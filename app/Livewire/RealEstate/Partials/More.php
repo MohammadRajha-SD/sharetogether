@@ -140,7 +140,7 @@ class More extends Component
         // $this->dispatch('ChangedStory', $this->story);
         // $this->dispatch('ChangedDaysOn', $this->daysOn);
         // $this->dispatch('ChangedHomeAge', [$this->min_home_age, $this->max_home_age]);
-        $this->dispatch('ChangedGarage', $this->garage);
+        $this->dispatch('ChangedGarage', ['garage' => $this->garage]);
         // $this->dispatch('ChangedParking', [
             // 'carport' => $this->carport,
             // 'rv_boat_parking' => $this->rv_boat_parking,

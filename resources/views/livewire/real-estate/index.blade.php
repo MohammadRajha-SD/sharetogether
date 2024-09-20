@@ -62,7 +62,7 @@
                         <span class="badge badge-new text-white">New</span>
                     @endif
 
-                    @livewire('real-estate.save', [$post->id])
+                    {{-- @livewire('real-estate.save', [$post->id], key('real_estate_post_'. $post->id)) --}}
 
                     @if ($post->images)
                         @foreach ($post->images as $image)

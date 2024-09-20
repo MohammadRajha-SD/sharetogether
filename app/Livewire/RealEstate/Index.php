@@ -36,7 +36,7 @@ class Index extends Component
     public $story = '';
 
     public $daysOn = null;
-    public $garage = null;
+    public $garage = 0;
     public $min_home_age = null;
     public $max_home_age = null;
 
@@ -67,20 +67,20 @@ class Index extends Component
     ];
 
     protected $listeners = [
-        'ChangedPropertyType',
-        'ChangedPrice',
-        'ChangedRooms',
-        'RealStateSearch',
-        'ChangedKeywords',
-        'ChangedStory',
-        'ChangedDaysOn',
-        'ChangedHomeAge',
+        // 'ChangedPropertyType',
+        // 'ChangedPrice',
+        // 'ChangedRooms',
+        // 'RealStateSearch',
+        // 'ChangedKeywords',
+        // 'ChangedStory',
+        // 'ChangedDaysOn',
+        // 'ChangedHomeAge',
         'ChangedGarage',
-        'ChangedParking',
-        'ChangedHealthingCooling',
-        'ChangedLotViews',
-        'ChangedSquareFeet',
-        'refresh' => '$refresh'
+        // 'ChangedParking',
+        // 'ChangedHealthingCooling',
+        // 'ChangedLotViews',
+        // 'ChangedSquareFeet',
+        // 'refresh' => '$refresh'
     ];
 
     /* Listeners */
@@ -133,9 +133,9 @@ class Index extends Component
 
     public function ChangedGarage($garage): void
     {
-        $this->garage = $garage;
+        $this->garage = $garage['garage'];
         $this->resetPage();
-        $this->dispatch('refresh');
+
     }
 
     public function ChangedParking(array $data): void
@@ -225,12 +225,12 @@ class Index extends Component
     public function render()
     {
         $query = RealEstatePost::query()->where('visibility', 1);
-        
-        // $this->applyFilters($query);
-        if ($this->garage !== null) {
+
+        if ($this->garage >= 0) 
+        {
             $query->where('garage', '>=', $this->garage);
         }
-
+        
         $real_estate_posts = $query->paginate($this->limit);
 
         return view('livewire.real-estate.index', compact('real_estate_posts'));

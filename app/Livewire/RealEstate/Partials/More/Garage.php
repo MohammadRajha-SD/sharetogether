@@ -8,9 +8,10 @@ class Garage extends Component
 {
     public $garage = 0;
 
+
     public function garageChanged($garage){
         $this->garage = $garage;
-        $this->dispatch('ChangedGarage', $garage);
+        $this->dispatch('ChangedGarage', $this->garage);
     }
 
     public function render()
