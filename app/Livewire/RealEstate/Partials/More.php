@@ -31,7 +31,7 @@ class More extends Component
     public $max_home_age = null;
     public $is_valid_home_age = true;
     public $home_age = 0;
-    
+
     // square feet
     public $min_sqft = null;
     public $max_sqft = null;
@@ -83,7 +83,8 @@ class More extends Component
         $this->story = $story;
     }
 
-    public function daysOnChanged($daysOn){
+    public function daysOnChanged($daysOn)
+    {
         $this->daysOn = $daysOn;
     }
 
@@ -95,13 +96,13 @@ class More extends Component
             $this->is_valid_home_age = true;
             return;
         }
-    
+
         // Check if min is null, it's okay to filter by max
         if ($this->min_home_age == null && $this->max_home_age != null) {
             $this->is_valid_home_age = true;
             return;
         }
-    
+
         // Both min and max are set, validate if max is greater than min
         if ($this->min_home_age !== null && $this->max_home_age !== null) {
             $this->is_valid_home_age = $this->max_home_age > $this->min_home_age;
@@ -110,23 +111,24 @@ class More extends Component
 
     public function validateSquareFeet()
     {
-         if ($this->min_sqft != null && $this->max_sqft == null) {
+        if ($this->min_sqft != null && $this->max_sqft == null) {
             $this->is_valid_sqft = true;
             return;
         }
-    
+
         if ($this->min_sqft == null && $this->max_sqft != null) {
             $this->is_valid_sqft = true;
             return;
         }
-    
+
         if ($this->min_sqft !== null && $this->max_sqft !== null) {
             $this->is_valid_sqft = $this->max_sqft > $this->min_sqft;
         }
     }
 
 
-    public function garageChanged($garage){
+    public function garageChanged($garage)
+    {
         $this->garage = $garage;
     }
 
@@ -135,24 +137,17 @@ class More extends Component
         $this->is_show_more = false;
         // $this->validateHomeAge();
         // $this->validateSquareFeet();
-        
-        // $this->dispatch('ChangedKeywords', $this->keywords);
-        // $this->dispatch('ChangedStory', $this->story);
-        // $this->dispatch('ChangedDaysOn', $this->daysOn);
-        // $this->dispatch('ChangedHomeAge', [$this->min_home_age, $this->max_home_age]);
+
+        $this->dispatch('ChangedKeywords', $this->keywords);
+        $this->dispatch('ChangedStory', $this->story);
+        $this->dispatch('ChangedDaysOn', $this->daysOn);
+        $this->dispatch('ChangedHomeAge', ['min' => $this->min_home_age, 'max' => $this->max_home_age]);
         $this->dispatch('ChangedGarage', ['garage' => $this->garage]);
-        // $this->dispatch('ChangedParking', [
-            // 'carport' => $this->carport,
-            // 'rv_boat_parking' => $this->rv_boat_parking,
-        // ]);
-        // $this->dispatch('ChangedHealthingCooling', [
-            // 'central_air' => $this->central_air,
-            // 'central_heat' => $this->central_heat,
-            // 'forced_air' => $this->forced_air,
-        // ]);
-        
-        // $this->dispatch('ChangedLotViews', $this->lot_views);
-        // $this->dispatch('ChangedSquareFeet', [$this->min_sqft, $this->max_sqft]);
+        $this->dispatch('ChangedParking', ['carport' => $this->carport, 'rv_boat_parking' => $this->rv_boat_parking]);
+        $this->dispatch('ChangedHealthingCooling', ['central_air' => $this->central_air, 'central_heat' => $this->central_heat, 'forced_air' => $this->forced_air]);
+
+        $this->dispatch('ChangedLotViews', $this->lot_views);
+        $this->dispatch('ChangedSquareFeet', ['min' => $this->min_sqft, 'max' => $this->max_sqft]);
     }
 
     public function render()

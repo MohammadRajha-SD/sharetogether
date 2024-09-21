@@ -52,33 +52,23 @@
 
         <div class="dropdown-menu dropdown-menu-custom {{ $is_show_more ? 'show' : '' }}" aria-labelledby="dropdownMenuButtonMore">
             <div class="row">
-                {{-- @include('livewire.real-estate.partials.more.keywords') --}}
+                @include('livewire.real-estate.partials.more.keywords')
                 {{-- @include('livewire.real-estate.partials.more.HOA') --}}
-                {{-- @include('livewire.real-estate.partials.more.days_on') --}}
-                {{-- @include('livewire.real-estate.partials.more.square_feet') --}}
+                @include('livewire.real-estate.partials.more.days_on')
+                @include('livewire.real-estate.partials.more.square_feet')
                 {{-- @include('livewire.real-estate.partials.more.lot_size') --}}
                 
-                {{-- @include('livewire.real-estate.partials.more.home_age') --}}
-                {{-- @include('livewire.real-estate.partials.more.stories') --}}
+                @include('livewire.real-estate.partials.more.home_age')
+                @include('livewire.real-estate.partials.more.stories')
+                @include('livewire.real-estate.partials.more.garage')
                 
-                {{-- @livewire('real-estate.partials.more.garage', key('garage-component_11')) --}}
 
-                {{-- @include('livewire.real-estate.partials.more.parking') --}}
-                {{-- @include('livewire.real-estate.partials.more.heating_cooling') --}}
+                @include('livewire.real-estate.partials.more.parking')
+                @include('livewire.real-estate.partials.more.heating_cooling')
                 {{-- inside_room --}}
                 {{-- outsize_feature --}}
-                {{-- @include('livewire.real-estate.partials.more.lot_views') --}}
-                <div class="col-12 border-bottom mt-3">
-                    <h5 class="card-title">Garage</h5>
-                    <div class="d-flex my-3">
-                        <div class="btn-group" role="group" aria-label="Garage">
-                            <button type="button"  class="btn {{$garage == 0 ? 'btn-secondary' : 'btn-outline-secondary'}}" wire:click="garageChanged(0)">Any</button>
-                            <button type="button"  class="btn {{$garage == 1 ? 'btn-secondary' : 'btn-outline-secondary'}}" wire:click="garageChanged(1)">1+</button>
-                            <button type="button"  class="btn {{$garage == 2 ? 'btn-secondary' : 'btn-outline-secondary'}}" wire:click="garageChanged(2)">2+</button>
-                            <button type="button"  class="btn {{$garage == 3 ? 'btn-secondary' : 'btn-outline-secondary'}}" wire:click="garageChanged(3)">3+</button>
-                        </div>
-                    </div>
-                </div>
+                @include('livewire.real-estate.partials.more.lot_views')
+               
             </div>
 
             <!-- Footer with Reset and Submit buttons -->

@@ -17,7 +17,6 @@ class Price extends Component
         if ($this->max_price !== null && $this->min_price >= $this->max_price) {
             $this->is_valid = false;
         } else {
-
             $this->is_valid = true;
         }
     }

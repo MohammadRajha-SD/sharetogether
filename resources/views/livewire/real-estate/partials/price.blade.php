@@ -1,6 +1,6 @@
 <div>
     <style>
-        .dropdown-menu-custom {
+        .dropdown-menu-custom-price {
             padding: 20px;
             width: 300px;
         }
@@ -35,9 +35,14 @@
     <div class="dropdown">
         <button class="btn-filter dropdown-toggle" type="button" id="dropdownMenuButtonPrice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" wire:click="toggleShow">
             {{ $price > 0 ? $price : 'Price' }}
+            
         </button>
 
-        <div class="dropdown-menu dropdown-menu-custom {{ $is_show ? 'show' : '' }}" aria-labelledby="dropdownMenuButtonPrice">
+        <div class="dropdown-menu dropdown-menu-custom-price {{ $is_show ? 'show' : '' }}" aria-labelledby="dropdownMenuButtonPrice">
+            <div class="d-flex justify-content-between mb-3">
+                <span>Price</span>
+                <a href="#" wire:click.prevent="submit" class="text-primary">Done</a>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="input-group">
