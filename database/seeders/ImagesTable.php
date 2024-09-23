@@ -20,8 +20,8 @@ class ImagesTable extends Seeder
             'uploads/real1.png',
             'uploads/real2.png',
             'uploads/real3.png',
-            'uploads/real4.png',
-            'uploads/real5.png',
+            // 'uploads/real4.png',
+            // 'uploads/real5.png',
         ];
 
         foreach ($posts as $post) {

@@ -8,6 +8,7 @@ $main_categories = config('categories')['main-categories'];
 
 <style>
     @media(max-width:1024px) {
+
         #navbar-categories a,
         #navbar-categories button {
             padding: 15px;
@@ -15,6 +16,7 @@ $main_categories = config('categories')['main-categories'];
     }
 
     @media (max-width: 769px) {
+
         #navbar-categories a,
         #navbar-categories button {
             padding: 5px;
@@ -38,6 +40,7 @@ $main_categories = config('categories')['main-categories'];
         #navbar-categories {
             display: none !important;
         }
+
         .logo {
             margin-left: 36px;
             width: 50px;
@@ -63,24 +66,26 @@ $main_categories = config('categories')['main-categories'];
 
         @if (request()->is('real-estate*'))
             @livewire('real-estate.header', key('real_estate_header_'))
+        @elseif (request()->is('exchange*'))
+            @livewire('exchanges.header', key('exchnages_header'))
         @else
         <ul class="d-flex align-items-center mt-2" id="navbar-categories">
             @foreach ($main_categories as $main_category)
-                @if ($main_category['slug'] === 'homeless')
-                    <div class="dropdown">
-                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary" data-toggle="dropdown"
-                            id="dropdownMenuButton" type="button">
-                            {{ $main_category['name'] }}<i class="fas fa-caret-down ml-1"></i>
-                        </button>
-                        <div class="dropdown-menu tx-13 custom-dropdown">
-                            @livewire('chats.communities.join')
-                        </div>
-                    </div>
-                @else
-                <a href="#{{ $main_category['slide_to'] }}" data-category-id="{{ $main_category['category_id'] ?? null }}"
-                    class="main-category-clicked btn btn-danger mr-1 rounded text-black font-weight-bold">
-                    {{ $main_category['name'] }}</a>
-                @endif
+            @if ($main_category['slug'] === 'homeless')
+            <div class="dropdown">
+                <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary" data-toggle="dropdown"
+                    id="dropdownMenuButton" type="button">
+                    {{ $main_category['name'] }}<i class="fas fa-caret-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu tx-13 custom-dropdown">
+                    @livewire('chats.communities.join')
+                </div>
+            </div>
+            @else
+            <a href="#{{ $main_category['slide_to'] }}" data-category-id="{{ $main_category['category_id'] ?? null }}"
+                class="main-category-clicked btn btn-danger mr-1 rounded text-black font-weight-bold">
+                {{ $main_category['name'] }}</a>
+            @endif
             @endforeach
         </ul>
         @endif

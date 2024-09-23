@@ -93,4 +93,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(RealEstatePost::class, 'real_estate_saves', 'user_id', 'real_estate_post_id');
     }
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

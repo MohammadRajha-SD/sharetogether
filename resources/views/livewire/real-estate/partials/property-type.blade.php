@@ -2,7 +2,7 @@
     <div class="dropdown">
         <button class="btn-filter dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-            {{ $selectedProperty === null ? 'Any' : $selectedProperty}}
+            {{ $selectedProperty === null ? 'Property Type' : $selectedProperty}}
         </button>
 
         <div class="dropdown-menu dropdown-menu-custom {{$is_show ? 'show' : ''}}" aria-labelledby="dropdownMenuButton">

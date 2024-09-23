@@ -14,6 +14,10 @@ use App\Livewire\RealEstate\Show as RealEstateShow;
 use App\Livewire\RealEstate\Edit as RealEstateEdit;
 use App\Livewire\RealEstate\Create as RealEstateCreate;
 
+use App\Livewire\Exchanges\Main as ExchangeMain;
+
+
+
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
     Route::middleware(['auth'])->group(function () {
@@ -21,7 +25,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         \Livewire\Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
         });
-        
+
         Route::get('/', [HomeController::class, 'index'])->name('home');
 
         // posts & comments
@@ -38,13 +42,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         // settings
         Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
 
+        // commmunities route
+        Route::get('/communities/chat/{slug}', ChatCommunity::class)->name('community.chat');
+
         // Real Estate Posts Routes
         Route::get('real-estates', RealEstateMain::class)->name('real-estate.index');
         Route::get('real-estates/create', RealEstateCreate::class)->name('real-estate.create');
         Route::get('real-estates/{id}', RealEstateShow::class)->name('real-estate.show');
         Route::get('real-estates/{id}/edit', RealEstateEdit::class)->name('real-estate.edit');
 
-        Route::get('/communities/chat/{slug}', ChatCommunity::class)->name('community.chat');
+        // ExchangeRequests
+        Route::get('exchange-market', ExchangeMain::class)->name('exchange.index');
+        Route::get('exchange-market/requests', ExchangeMain::class)->name('exchange.request');
     });
 
     Route::get('/test', function () {

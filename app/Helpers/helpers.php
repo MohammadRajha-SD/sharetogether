@@ -16,3 +16,31 @@ function formatPrice($number) {
         return $number;
     }
 }
+
+/** Set Sidebar Item Active */
+function setActive(array $route)
+{
+    if (is_array($route)) {
+        foreach ($route as $r) {
+            if (request()->routeIs($r)) {
+                return 'active';    
+            }
+        }
+    }
+}
+function setStatus($name)
+{
+    switch (strtolower($name)) {
+        case 'accepted':
+            return 'success';
+        
+        case 'rejected':
+            return 'danger';
+        
+        case 'pending':
+            return 'warning';
+
+        default:
+            return 'secondary';
+    }
+}

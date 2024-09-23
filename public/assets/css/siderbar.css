@@ -10,11 +10,11 @@
 .nav-link-category {
     border-radius: 40px;
     width:80%;
-    padding:4px 10px;
     color: #606060ff;
     font-size:16px !important;
     transition: 0.3s;
 }
+.nav-link-category.active,
 .nav-link-category:hover{
     background-color: #fec7bdff;
     color:#eb1700ff;
@@ -87,4 +87,8 @@
 
 .divider {
     margin: 10px 0;
+}
+
+.modal-backdrop {
+    position: static !important;
 }

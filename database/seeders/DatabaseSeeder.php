@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,18 +15,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-//CategoriesTableSeeder
+        //CategoriesTableSeeder
         $this->call([
-            UsersTableSeeder::class,
-            CountriesTableSeeder::class,
-            OccupationsTableSeeder::class,
-            CategoriesTableSeeder::class,
-//            CategorySeeder::class,
-//            UserDetailsTableSeeder::class,
-//            UserInterestsTableSeeder::class,
-//            PostsTableSeeder::class,
-//            ImagesTableSeeder::class,
-//            CommentsTableSeeder::class,
+            // UsersTableSeeder::class,
+            // CountriesTableSeeder::class,
+            // OccupationsTableSeeder::class,
+            // CategoriesTableSeeder::class,
+            //            CategorySeeder::class,
+            //            UserDetailsTableSeeder::class,
+            //            UserInterestsTableSeeder::class,
+            //            PostsTableSeeder::class,
+            //            ImagesTableSeeder::class,
+            //            CommentsTableSeeder::class,
+            ExchangeSeeder::class,
         ]);
     }
 }
