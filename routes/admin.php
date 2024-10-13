@@ -12,24 +12,28 @@ use App\Http\Controllers\Admin\TownController;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-    ], function(){
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
 
-    Route::middleware(['auth', 'CheckIfAdmin'])->prefix('admin')->name('admin.')->group(function () {
-        /*  Route dashboard admin */
-        Route::get('dashboard', function () { return view('admin.index'); })->name('dashboard');
+        Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+            /*  Route dashboard admin */
+            Route::get('dashboard', function () {
+                return view('admin.index');
+            })->name('dashboard');
 
-        /* Route Category */
-        Route::resource('categories', CategoryController::class);
-        Route::resource('sub-categories', SubCategoryController::class);
-        Route::resource('countries', CountryController::class);
-        Route::resource('states', StateController::class);
-        Route::resource('cities', CityController::class);
-        Route::resource('towns', TownController::class);
+            /* Route Category */
+            Route::resource('categories', CategoryController::class);
+            Route::resource('sub-categories', SubCategoryController::class);
+            Route::resource('countries', CountryController::class);
+            Route::resource('states', StateController::class);
+            Route::resource('cities', CityController::class);
+            Route::resource('towns', TownController::class);
 
-        /* Route Livewire */
-        \Livewire\Livewire::setUpdateRoute(function ($handle){
-            return Route::post('/livewire/update', $handle);
+            /* Route Livewire */
+            \Livewire\Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/livewire/update', $handle);
+            });
         });
-    });
-});
+    }
+);
