@@ -66,7 +66,7 @@ $main_categories = config('categories')['main-categories'];
 
         @if (request()->is('real-estate*'))
             @livewire('real-estate.header', key('real_estate_header_'))
-        @elseif (request()->is('exchange*'))
+        @elseif (request()->routeIs('exchange*'))
             @livewire('exchanges.header', key('exchnages_header'))
         @else
         <ul class="d-flex align-items-center mt-2" id="navbar-categories">

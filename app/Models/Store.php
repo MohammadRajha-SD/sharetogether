@@ -10,8 +10,14 @@ class Store extends Model
     use HasFactory;
 
     protected $guarded = [];
+
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
     }
 }

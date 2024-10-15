@@ -9,13 +9,10 @@ class Item extends Model
 {
     use HasFactory;
 
-    public function exchangesAsUserOne()
-    {
-        return $this->hasMany(Exchange::class, 'item_one_id');
-    }
+    protected $guarded = [];
 
-    public function exchangesAsUserTwo()
+    public function store()
     {
-        return $this->hasMany(Exchange::class, 'item_two_id');
+        return $this->belongsTo(Store::class);
     }
 }

@@ -1,7 +1,7 @@
 <ul class="exchange-market-siderbar nav flex-column pt-3" style="flex-wrap: nowrap;">
     @php
     $menuItems = [
-        ['route' => '#', 'icon' => 'bi-house', 'text' => 'Home'],
+        ['route' => route('exchange.stores'), 'icon' => 'bi-house', 'text' => 'Home','active' => ['exchange.stores', 'exchange.store.items']],
         ['route' => route('exchange.index'), 'icon' => 'bi-shop', 'text' => 'Exchange Market', 'active' => 'exchange.index'],
         ['route' => route('exchange.request'), 'icon' => 'bi-clipboard', 'text' => 'Exchange Requests', 'active' => 'exchange.request']
     ];

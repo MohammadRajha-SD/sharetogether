@@ -15,11 +15,11 @@ use App\Livewire\RealEstate\Edit as RealEstateEdit;
 use App\Livewire\RealEstate\Create as RealEstateCreate;
 
 use App\Livewire\Exchanges\Main as ExchangeMain;
+use App\Livewire\Exchanges\Shops as ShopMain;
 
 
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
-
     Route::middleware(['auth'])->group(function () {
         // Route Livewire
         \Livewire\Livewire::setUpdateRoute(function ($handle) {
@@ -54,6 +54,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         // ExchangeRequests
         Route::get('exchange-market', ExchangeMain::class)->name('exchange.index');
         Route::get('exchange-market/requests', ExchangeMain::class)->name('exchange.request');
+        Route::get('shop-essentials', ExchangeMain::class)->name('exchange.stores');
+        Route::get('shop-essentials/{id}/items', ExchangeMain::class)->name('exchange.store.items');
     });
 
     Route::get('/test', function () {

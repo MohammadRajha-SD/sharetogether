@@ -1,5 +1,5 @@
 <div>
-    @section('title', 'Exchange Market')
+    @section('title', @$title)
 
     @section('css')
     <link href="{{URL::asset('assets/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
@@ -25,10 +25,11 @@
 
         .nav-link-category {
             border-radius: 40px;
-            width: 80%;
+            width: 95%;
             color: #606060ff;
-            font-size: 16px !important;
+            font-size: 15px !important;
             transition: 0.3s;
+            font-family: serif;
         }
 
         .nav-link-category.active,
@@ -41,20 +42,24 @@
             position: static !important;
         }
     </style>
-
     @endsection
+
     <div class="row p-0 m-0" style="margin-top:65px;">
         <!-- Sidebar -->
-        <div class="col-md-4 col-lg-3 col-sm-12 p-0">
+        <div class="col-md-4 col-lg-2 col-sm-12 p-0">
             @livewire('exchanges.sidebar')
         </div>
 
         <!-- Content -->
-        <div class="col-md-8 col-lg-9 col-sm-12 p-0">
+        <div class="col-md-8 col-lg-10 col-sm-12 p-0">
             @if(request()->routeIs('exchange.index'))
             @livewire('exchanges.index', key('exchanges_market_main'))
             @elseif(request()->routeIs('exchange.request'))
             @livewire('exchanges.requests', key('exchanges_requests'))
+            @elseif(request()->routeIs('exchange.stores'))
+            @livewire('exchanges.stores', key('exchanges_stores'))
+            @else
+            @livewire('exchanges.store-items', key('exchanges_stores_items_'.$id), ['id' => $id])
             @endif
         </div>
     </div>

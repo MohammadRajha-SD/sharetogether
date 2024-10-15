@@ -1,4 +1,5 @@
 <div class="exchange-market-content">
+    @section('title', 'Exchange Market')
     <div class="card-header border-bottom mb-3" style="padding: 10px 0px 0px 10px;">
         <h2 class="text-danger">Available Products for Exchange</h2>
     </div>
